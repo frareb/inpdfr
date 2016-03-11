@@ -1,0 +1,9 @@
+year <- sub('-.*', '', meta$Date)
+note <- sprintf('R package version %s', meta$Version)
+bibentry(bibtype = 'Manual',
+  title = '{inpdfr}: Analysing Text Files Using Ecological Tools',
+  author = 'Francois Rebaudo',
+  institution = 'IRD, UMR EGCE, Univ.ParisSud-CNRS-IRD-Univ.ParisSaclay',
+  year = year,
+  note = note
+)

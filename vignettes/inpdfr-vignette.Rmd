@@ -1,0 +1,370 @@
+---
+title: "Introduction to inpdfr package"
+author: "François Rebaudo, Institut de Recherche pour le Développement, UMR EGCE, Univ.Paris Sud-CNRS-IRD-Univ.Paris Saclay, France"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to inpdfr package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `inpdfr` package is primarily designed for analysing and comparing PDF and/or TXT documents. For this Vignette we used PDF articles from the Journal of Statistical Software available at https://www.jstatsoft.org. Specifically we used the 10 articles from volume 68 (2015), which can be freely downloaded:
+
+- v68i01.pdf; CovSel: An R Package for Covariate Selection When Estimating Average Causal Effects, by Jenny Häggström, Emma Persson, Ingeborg Waernbaum, Xavier de Luna.
+- v68i02.pdf; sms: An R Package for the Construction of Microdata for Geographical Analysis, by Dimitris Kavroudakis.
+- v68i03.pdf; Parallel Sequential Monte Carlo for Efficient Density Combination: The DeCo MATLAB Toolbox, by Roberto Casarin, Stefano Grassi, Francesco Ravazzolo, Herman K. van Dijk.
+- v68i04.pdf; Bayesian Model Averaging Employing Fixed and Flexible Priors: The BMS Package for R, by Stefan Zeugner, Martin Feldkircher.
+- v68i05.pdf; Bayesian Model Averaging and Jointness Measures for gretl, by Marcin Błażejowski, Jacek Kwiatkowski.
+- v68i06.pdf; Visually Exploring Missing Values in Multivariable Data Using a Graphical User Interface, by Xiaoyue Cheng, Dianne Cook, Heike Hofmann.
+- v68i07.pdf; equateIRT: An R Package for IRT Test Equating, by Michela Battauz.
+- v68i08.pdf; A SAS Program Combining R Functionalities to Implement Pattern-Mixture Models, by Pierre Bunouf, Geert Molenberghs, Jean-Marie Grouin, Herbert Thijs.
+- v68i09.pdf; POPS: A Software for Prediction of Population Genetic Structure Using Latent Regression Models, by Flora Jay, Olivier François, Eric Y. Durand, Michael G. B. Blum.
+- v68i10.pdf; Semi-Parametric Maximum Likelihood Method for Interaction in Case-Mother Control-Mother Designs: Package SPmlficmcm, by Moliere Nguile-Makao, Alexandre Bureau.
+
+We used these files for the purpose of this vignette, but I encourage you to test `inpdfr` package with your own publications, or those of your lab and colleagues.
+
+The package uses XPDF (http://www.foolabs.com/xpdf/download.html) for PDF to text extraction. You need to install XPDF before using `inpdfr` package. Depending on your operating system, you may need to restart your computer after installing XPDF. If you do not want to use XPDF, you can extract the content of your PDF files with the method of your choice and then store the content in TXT files. The only function making use of XPDF is `getPDF` which can be substituted with the `getTXT` function.
+
+## 1. Using inpdfr from command line
+
+### 1.1 Obtaining the word-occurrence data.frame from a set of documents
+
+#### 1.1.1. Extracting text from PDF
+To extract text from PDF files, you need to specify the directory where your files are located:
+
+    mywd <- "/home/user/myWD/JSS/"
+    
+Then list your PDF files using `getListFiles` function:
+
+    listFilesExt <- getListFiles(mywd)
+    #> $pdf
+    #> [1] "v68i01.pdf" "v68i02.pdf" "v68i03.pdf" "v68i04.pdf" 
+    #> [5] "v68i05.pdf" "v68i06.pdf" "v68i07.pdf" "v68i08.pdf" 
+    #> [9] "v68i09.pdf" "v68i10.pdf"
+    #>
+    #> $txt
+    #> NULL
+
+To extract text from PDF files, use the `getPDF` function:
+
+    wordFreqPDF <- getPDF(myPDFs = listFilesExt$pdf)
+    #> [[1]]$wc
+    #>        freq    stem    word
+    #> 626     264     the     the
+    #> 32      141     and     and
+    #> ...     ...     ...     ...
+    #>
+    #> [[1]]$name
+    #> [1] "v68i01"
+    #>
+    #> ...
+
+You will get a list where each element corresponds to a list composed of a data.frame (freq = word frequency; stem = stem word; word = word) and the name of the original PDF file without the extension. If you also have TXT files, you can use the `getTXT` function which works similarly. To merge the results of the PDF and TXT extraction, use the `append` function as shown bellow:
+
+    wordFreqPDF <- getPDF(myPDFs = listFilesExt$pdf)
+    wordFreqTXT <- getTXT(myTXTs = listFilesExt$txt)
+    wordFreq <- append(wordFreqPDF, wordFreqTXT)
+
+#### 1.1.2. Excluding stop words
+In order to exclude stop words, use the `excludeStopWords` function which takes the list previously created and the language as arguments:
+
+    wordFreq <- excludeStopWords(wordF = wordFreq, lang = "English")
+    #> [[1]]$wc
+    #>        freq      stem         word
+    #> 135     101    covari   covariates
+    #> 144      46      data         data
+    #> ...     ...       ...          ...
+    #>
+    #> [[1]]$name
+    #> [1] "v68i01"
+    #>
+    #> ...
+
+In our case, "the" and "and" where supressed from the data.frame.
+
+#### 1.1.3. Truncation of the number of words
+Optionally, you can truncate the number of words in each data.frame using the `truncNumWords` function:
+
+    wordFreq <- truncNumWords(maxWords = Inf, wordF = wordFreq)
+
+Specifying `maxWords = Inf` won't truncate the data.frames.
+
+#### 1.1.4. Merging data.frames
+To obtain a word occurence data.frame, each element of the wordFreq list must be merged. This operation is performed with the `mergeWordFreq` function:
+
+    mergedD <- mergeWordFreq(wordF = wordFreq)
+    #>                         word v68i01 v68i02 v68i03 v68i04 v68i05  ...
+    #> stem2076               model     11     25     89    420    253  ...
+    #> stem722                 data     46     95     11     43     18  ...
+    #> ...
+
+#### 1.1.5. Quick function
+All theses tasks can be performed with the `getwordOccuDF` function which takes the working directory and the language as arguments:
+
+    mergedD <- getwordOccuDF(mywd = "/home/user/myWD/JSS/", language = "English")
+
+### 1.2. Computing a set of analysis from the word-occurrence data.frame
+A folder named "RESULTS" is created in your working directory and contains the output files for each analysis performed.
+
+#### 1.2.1. Simple manipulations of the word occurrence data.frame
+Simple manipulations can be easily performed from the word occurrence data.frame. The number of words (excluding stop words) can be computed as following:
+
+    numWords <- apply(mergedD[,2:ncol(mergedD)], MARGIN = 2, FUN = sum)
+
+Or the number of unique words:
+
+    numUniqueWords <- apply(mergedD[,2:ncol(mergedD)], 
+		MARGIN = 2, FUN = function(i) {length(i[i > 0])})
+    
+Considering the number of words as an "area", and the number of unique words as "species", we can easily build a "species-area relationships" analysis (which is commonly Log-Log transformed):
+
+    plot(x = log(numWords), y = log(numUniqueWords), pch = 16)
+    text(x = log(numWords), y = log(numUniqueWords), 
+        labels=names(mergedD[,2:ncol(mergedD)]), cex= 0.7,pos = 3)
+    lmSAR <- lm(log(numUniqueWords) ~ log(numWords))
+    summary(lmSAR)
+    abline(lmSAR)
+    #> Call:
+    #> lm(formula = log(numUniqueWords) ~ log(numWords))
+    #> 
+    #> Residuals:
+    #>      Min       1Q   Median       3Q      Max 
+    #> -0.31186 -0.03016  0.02944  0.05401  0.15724 
+    #> 
+    #> Coefficients:
+    #>               Estimate Std. Error t value Pr(>|t|)   
+    #> (Intercept)     1.4693     1.2606   1.166  0.27738   
+    #> log(numWords)   0.6246     0.1524   4.099  0.00344 **
+    #> ---
+    #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    #> 
+    #> Residual standard error: 0.1316 on 8 degrees of freedom
+    #> Multiple R-squared:  0.6775,	Adjusted R-squared:  0.6372 
+    #> F-statistic:  16.8 on 1 and 8 DF,  p-value: 0.003441
+
+The slope is significantly different from zero, so that longer articles have a higher specific richness in terms of number of unique words. Additional analyses from this perspective can be found in numerous R ecological packages. A good place to start is the `vegan` package.
+
+#### 1.2.2. Word cloud
+Assuming your word occurrence data.frame is named "mergedD", you can compute word clouds with the `makeWordcloud` function. The getPlot argument controls which word clouds should be computed. If getPlot[1] == TRUE, then a word cloud is made for each file. If getPlot[2] == TRUE, then a word cloud is made for the set of documents.
+
+    makeWordcloud(wordF = mergedD, wcminFreq = 50, wcmaxWords = Inf, 
+        wcRandOrder = FALSE, wcCol = RColorBrewer::brewer.pal(8,"Dark2"), 
+        getPlot = c(FALSE,TRUE))
+
+#### 1.2.3. Summary statistics
+The function `getSummaryStatsBARPLOT` allows you to compute a barplot of the number of unique words per document. It returns the number of unique words per document.
+
+    getSummaryStatsBARPLOT(wordF = mergedD)
+    #> [1]  597  800  969 1019  838  788  541  822  823  568
+
+The function `getSummaryStatsHISTO` allows you to compute an histogram of the number of word per document.
+
+    getSummaryStatsHISTO(wordF = mergedD)
+
+The function `getSummaryStatsOCCUR` allows you to compute a scatter plot with the proportion of documents using similar words, and returns the corresponding table.
+
+    getSummaryStatsOCCUR(wordF = mergedD)
+    #>    dfTableP[, 3] dfTableP[, 2]
+    #> 1        (0,0.1]          2296
+    #> 2      (0.1,0.2]           467
+    #> 3      (0.2,0.3]           217
+    #> 4      (0.3,0.4]           142
+    #> 5      (0.4,0.5]           128
+    #> 6      (0.5,0.6]           101
+    #> 7      (0.6,0.7]            58
+    #> 8      (0.7,0.8]            67
+    #> 9      (0.8,0.9]            62
+    #> 10       (0.9,1]            57
+
+In our example, we can see that 57 words were used in 90 to 100% of the articles, or that 58 words were used in 60 to 70% of the articles, while 2296 words were specific to an article. Comparison with a special issue should give a different repartition with more words common to all articles.
+
+#### 1.2.4. Word frequency
+The function `getMostFreqWord` returns the most frequent words in the word occurrence data.frame. It also compute a scatter plot with the frequency of each word for each document. 
+
+    getMostFreqWord(wordF = mergedD, numWords = 10)
+    #> [1] "model"    "data"     "prior"        "package"  "variable"
+    #> [6]  "test"  "values"  "estimate"    "statistical"       "set"
+
+You may want to normalize the frequency by the number of words in each document. This can be easily done (in our example, the most frequent words are the same, but the corresponding scatter plots differ):
+
+    mergedDNorm <- data.frame(word = as.character(mergedD[,1]), 
+        t(t(mergedD[,2:ncol(mergedD)]) / 
+        apply(mergedD[,2:ncol(mergedD)], MARGIN=2, FUN=sum)) 
+        * 100)
+    getMostFreqWord(wordF = mergedDNorm, numWords = 10)
+    #> [1] "model"    "data"     "prior"        "package"  "variable"
+    #> [6]  "test"  "values"  "estimate"    "statistical"       "set"
+
+The function `getMostFreqWordCor` compute the correlation between most frequent words. Images of the correlation matrices are also provided in the "RESULTS" folder. In our set of PDFs, we can see for example that "model" is significantly correlated with "prior", or that "statistical" is significantly correlated with "varaible":
+
+    getMostFreqWordCor(wordF = mergedD, numWords = 10)
+    #> $cor
+    #>                  model       data      prior      package   variable ...
+    #> model        1.0000000 -0.3835130  0.9564451  0.194231566  0.2746420 ...
+    #> data        -0.3835130  1.0000000 -0.2039196  0.108141861  0.5050901 ...
+    #> prior        0.9564451 -0.2039196  1.0000000  0.188332000  0.2856416 ...
+    #> package      0.1942316  0.1081419  0.1883320  1.000000000  0.4097255 ...
+    #> variable     0.2746420  0.5050901  0.2856416  0.409725475  1.0000000 ...
+    #> test        -0.1517949 -0.3209755 -0.1651302  0.278446147 -0.3004002 ...
+    #> values      -0.3621747  0.5553868 -0.3198548 -0.232902022  0.5250301 ...
+    #> estimate    -0.1736209 -0.3753552 -0.1576511 -0.009370034 -0.5549054 ...
+    #> statistical  0.4792956  0.2101346  0.5621689  0.183642865  0.6776569 ...
+    #> set          0.2755856 -0.2963624  0.2279321 -0.130621530  0.2758461 ...
+    #> 
+    #> $pval
+    #>                    model       data        prior   package   variable ...
+    #> model       0.000000e+00 0.27394969 1.493632e-05 0.5907879 0.44252229 ...
+    #> data        2.739497e-01 0.00000000 5.720168e-01 0.7661868 0.13646367 ...
+    #> prior       1.493632e-05 0.57201681 0.000000e+00 0.6023278 0.42369314 ...
+    #> package     5.907879e-01 0.76618681 6.023278e-01 0.0000000 0.23963804 ...
+    #> variable    4.425223e-01 0.13646367 4.236931e-01 0.2396380 0.00000000 ...
+    #> test        6.754944e-01 0.36584180 6.484673e-01 0.4359677 0.39903200 ...
+    #> values      3.037403e-01 0.09557406 3.676131e-01 0.5172745 0.11916335 ...
+    #> estimate    6.314473e-01 0.28514377 6.635822e-01 0.9795048 0.09592275 ...
+    #> statistical 1.610148e-01 0.56009587 9.074744e-02 0.6115571 0.03130403 ...
+    #> set         4.408923e-01 0.40570937 5.265050e-01 0.7190909 0.44044280 ...
+
+The function `getXFreqWord` returns the words which have been found at leat X times in the set of documents.
+
+    getXFreqWord(wordF = mergedD, occuWords = 200)
+    #>  [1] "model"       "data"        "prior"      
+    #>  [4] "package"     "variable"    "test"       
+    #>  [7] "values"      "estimate"    "statistical"
+    #> [10] "set"         "miss"        "parameter"  
+    #> [13] "covariance"  "coefficient" "imputation" 
+    #> [16] "number"      "journal"     "equating"   
+    #> [19] "function"    "results"     "method"     
+    #> [22] "software"    "average" 
+    
+#### 1.2.5. Correspondance analysis
+The function `doCA` performs a correspondance analysis on the basis of the word occurrence data.frame, with the associated plot.
+
+    doCA(wordF = mergedD)
+    #>  Principal inertias (eigenvalues):
+    #>            1        2        3        4        5        6        7        ...
+    #> Value      0.500619 0.472982 0.442737 0.411129 0.401536 0.389836 0.374116 ...
+    #> Percentage 13.83%   13.07%   12.24%   11.36%   11.1%    10.77%   10.34%   ...
+    #> 
+    #> Rows:
+    #> ...
+    #> 
+    #>  Columns:
+    #>            v68i01   v68i02    v68i03    v68i04    v68i05   v68i06 ...
+    #> Mass     0.062176 0.095228  0.126130  0.165061  0.104936 0.097500 ...
+    #> ChiDist  2.405088 2.046214  1.685774  1.438954  1.636650 1.864347 ...
+    #> Inertia  0.359653 0.398717  0.358441  0.341773  0.281083 0.338890 ...
+    #> Dim. 1  -0.011166 0.768156  0.513466  0.475236  0.383365 0.238685 ...
+    #> Dim. 2   0.794833 1.180390 -0.146855 -1.655962 -1.109124 0.946243 ...
+
+#### 1.2.6. Cluster analysis
+The function `doCluster` performs a cluster analysis with the associated dendrogram.
+
+    doCluster(wordF = mergedD, myMethod = "ward.D2", gp = FALSE, nbGp = 3)
+    #> Call:
+    #> stats::hclust(...)
+    #> 
+    #> Cluster method   : ward.D2 
+    #> Distance         : euclidean 
+    #> Number of objects: 10
+
+#### 1.2.7. K-means cluster analysis
+The function `doKmeansClust` performs a k-means cluster analysis with the associated cluster plot.
+
+    doKmeansClust(wordF = mergedD, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong")
+    #> K-means clustering with 4 clusters of sizes 1, 2, 6, 1
+    #> 
+    #> Cluster means:
+    #>     v68i01   v68i02   v68i03   v68i04   v68i05   v68i06   v68i07 ...
+    #> 1 501.5376 549.1102 589.0849 738.2107 569.1072 593.9343   0.0000 ...
+    #> 2 392.8950 422.6009 221.9471 526.7186 221.9471 484.8954 579.0960 ...
+    #> 3 257.0480 290.6130 431.3375 632.9743 418.1930 320.8966 536.3371 ...
+    #> 4 622.2564 641.1404 632.0633   0.0000 421.3739 680.6240 738.2107 ...
+    #> 
+    #> Clustering vector:
+    #> v68i01 v68i02 v68i03 v68i04 v68i05 v68i06 v68i07 v68i08 v68i09 v68i10 
+    #>      3      3      2      4      2      3      1      3      3      3 
+    #> 
+    #> Within cluster sum of squares by cluster:
+    #> [1]      0.0 220295.9 672154.6      0.0
+    #>  (between_SS / total_SS =  67.2 %)
+    #> 
+    #> Available components:
+    #> 
+    #> [1] "cluster"      "centers"      "totss"        "withinss" ...
+
+#### 1.2.8. Metacommunity analysis with entropart
+Discussing the analyses performed here are out of the scope of this vignette. Briefly, the function `doMetacomEntropart` uses the `entropart` package and the functions `DivEst`, `DivPart`, `DivProfile`, and `MetaCommunity`. Results are provided as plots or TXT files in the "RESULTS" folder. Words are considered as species, word occurrences as abundances, and documents as communities.
+
+    doMetacomEntropart(wordF = mergedD)
+    #> Meta-community (class 'MetaCommunity') made of 25170 individuals in 10 
+    #> communities and 3595 species. 
+    #> 
+    #> Its sample coverage is 0.973223513822329 
+    #> 
+    #> Community weights are: 
+    #> v68i01 v68i02 v68i03 v68i04 v68i05 v68i06 v68i07 v68i08 v68i09 v68i10 
+    #>    0.1    0.1    0.1    0.1    0.1    0.1    0.1    0.1    0.1    0.1 
+    #> Community sample numbers of individuals are: 
+    #> v68i01 v68i02 v68i03 v68i04 v68i05 v68i06 v68i07 v68i08 v68i09 v68i10 
+    #>   2517   3855   5106   6682   4248   3947   3723   4334   3439   2631 
+    #> Community sample coverages are: 
+    #>    v68i01    v68i02    v68i03    v68i04    v68i05    v68i06    v68i07 ...
+    #> 0.9070729 0.9250581 0.9265726 0.9440365 0.9268099 0.9176794 0.9444160 ...
+    #> 
+    #> ...
+
+
+#### 1.2.9. Metacommunity analysis with metacom
+Discussing the analyses performed here are out of the scope of this vignette. Briefly, the function `doMetacomMetacom` uses the `metacom` package and the `metacom` function. Just like before, words are considered as species, word occurrences as abundances, and documents as communities (allowing the metacommunity analysis).
+
+    doMetacomMetacom(wordF = mergedD, numSim = 10, limit = "Inf")
+    #> [1] "Identified community structure: Random"
+    #> $Comm
+    #> ...
+    #> 
+    #> $Coherence
+    #>                               output
+    #> embedded absences              20251
+    #> z                   1.91875604260688
+    #> pval              0.0550152153018832
+    #> sim.mean                     22109.1
+    #> sim.sd              968.387829791809
+    #> method                            r1
+    #> 
+    #> $Turnover
+    #>                           output
+    #> replacements             5961653
+    #> z              -2.67166401618644
+    #> pval         0.00754761772110864
+    #> sim.mean               3470121.1
+    #> sim.sd           932576.80790133
+    #> method                        r1
+    #> 
+    #> $Boundary
+    #>   index         P   df
+    #> 1     0 0.4234722 3592
+
+#### 1.2.10. Quick function
+All theses tasks can be performed with the `getAllAnalysis` function which takes the word-occurrence data.frame as argument:
+
+    getAllAnalysis(dataset = mergedD)
+
+## 2. Using inpdfr from the Graphical User Interface (GUI)
+To load the RGtk2 GUI, use the function `loadGUI`:
+
+    loadGUI()
+
+All function used to build the GUI were made available so that any developer can easily access its content. They are not intended to be used by end users, but given the scarcity of RGtk2 resources in the web, I thought they should be available in this package in the hope they could be usefull for other projects. Please feel free to use them under the terms of the package licence, but do not expect backward compatibility in future versions of this package. These functions are listed below:
+
+- askQuit
+- checkEntry
+- makeMainWindowsContent
+- makeMenuMainWindow
+- open_cb
+- open_cbFile
+- switchOnDialogWait
+- switchOffDialogWait
+
+## 3. Going further
+From this point, considering words as species, word occurrences as abundances, and documents as communities, an incredible amount of analyses from theoretical ecology are available in R. Some examples are Rank-abundance curve, Species-Area Relationships, or Single large or Several small analyses. All of them provide interesting points to compare and analyse sets of documents.

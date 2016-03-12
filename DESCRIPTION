@@ -22,7 +22,8 @@ Imports:
     metacom (>= 1.4.3),
     RGtk2 (>= 2.20.31),
     parallel (>= 3.2.1),
-    stringi (>= 1.0-1)
+    stringi (>= 1.0-1),
+    R.devices (>= 2.14.0)
 SystemRequirements: XPDF (http://www.foolabs.com/xpdf/download.html)
 Suggests:
     knitr,

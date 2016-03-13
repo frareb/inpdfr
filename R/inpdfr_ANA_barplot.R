@@ -5,6 +5,7 @@
 #' @param getPlot If \code{TRUE}, save the bar plot in the RESULTS directory.
 #' @param mwidth The width of the plot in pixels.
 #' @param mheight The height of the plot in pixels.
+#' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @param ... Additional arguments from \code{barplot} function.
 #' @return The number of unique words per document.
 #' @examples

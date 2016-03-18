@@ -4,22 +4,34 @@
 #' @param wordF The data.frame containing word occurrences.
 #' @param mwidth The width of the plot in pixels.
 #' @param mheight The height of the plot in pixels.
+#' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @param ... Additional arguments from \code{hist} function.
 #' @return NULL
 #' @examples
 #' \dontrun{
-#' getSummaryStatsHISTO(wordF=myDF)
+#' getSummaryStatsHISTO(wordF = myDF)
 #' }
 #' @export
-getSummaryStatsHISTO<-function(wordF,mwidth=800,mheight=800,...){
+getSummaryStatsHISTO <- function(wordF, mwidth = 800, mheight = 800, formatType = "png", ...){
 
   subDir <- "RESULTS"
   dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 
-  mFreq<-matrix(as.matrix(wordF[,2:length(wordF[1,])]),ncol=(length(wordF[1,])-1),dimnames=list(as.vector(wordF[,1]),names(wordF)[2:length(wordF[1,])]))
-  grDevices::png(filename=paste0("RESULTS/HISTO_numWords",".png"),width = mwidth, height = mheight)
-    try(graphics::hist(apply(mFreq,MARGIN=2,FUN=sum),main="",xlab="Number of words excluding stop words",col=grDevices::grey(0.5),...),silent=TRUE)
-  grDevices::dev.off()
+  mFreq <- matrix(as.matrix(wordF[,2:length(wordF[1,])]), ncol = (length(wordF[1,])-1), 
+    dimnames = list(as.vector(wordF[,1]), names(wordF)[2:length(wordF[1,])]))
+  
+  R.devices::devEval(type = formatType, name = "HISTO_numWords",
+   aspectRatio = mheight / mwidth,
+   scale = do.call(function(){if((mheight / mwidth) <= 1) {
+     x <- max(mheight / 480, mwidth / 480)} else {
+       x <- min(mheight / 480, mwidth / 480)}
+     return(x)}, list())
+   , path = file.path(getwd(), subDir), {
+    try(graphics::hist(apply(mFreq, MARGIN = 2, FUN = sum), main = "", 
+      xlab = "Number of words excluding stop words", col = grDevices::grey(0.5),...), 
+      silent = TRUE)
+   }
+  )
 
   return(NULL)
 }

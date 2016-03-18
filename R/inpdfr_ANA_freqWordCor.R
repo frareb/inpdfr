@@ -11,7 +11,7 @@
 #' @return The \code{numWords} most frequent words.
 #' @examples
 #' \dontrun{
-#' getMostFreqWord(wordF=myDF,numwords=5)
+#' getMostFreqWord(wordF = myDF, numwords = 5)
 #' }
 #' @export
 getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mheight = 800, 
@@ -67,7 +67,7 @@ getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mhei
 #' @return A list with the correlation matrix and the p-value matrix.
 #' @examples
 #' \dontrun{
-#' getMostFreqWordCor(wordF=myDF,numwords=5)
+#' getMostFreqWordCor(wordF = myDF, numwords = 5)
 #' }
 #' @export
 getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getTextSink = TRUE,
@@ -163,15 +163,15 @@ getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getText
 #' @return A vector with most frequent words.
 #' @examples
 #' \dontrun{
-#' getXFreqWord(wordF=myDF,occuWords=5)
+#' getXFreqWord(wordF = myDF, occuWords = 5)
 #' }
 #' @export
-getXFreqWord<-function(wordF,occuWords){
-  xFreqWords<-NULL
+getXFreqWord <- function(wordF, occuWords){
+  xFreqWords <- NULL
   if(is.numeric(occuWords)){
-    datasetSum<-apply(wordF[,2:ncol(wordF)],MARGIN=1,FUN=sum)
-    xFreqWords<-wordF[,1][datasetSum>=occuWords]
-    xFreqWords<-as.character(xFreqWords)
+    datasetSum <- apply(wordF[,2:ncol(wordF)], MARGIN = 1, FUN = sum)
+    xFreqWords <- wordF[,1][datasetSum >= occuWords]
+    xFreqWords <- as.character(xFreqWords)
   }
   return(xFreqWords)
 }

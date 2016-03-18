@@ -7,36 +7,47 @@
 #' @param getPlot If \code{TRUE}, save a scatter plot in the RESULTS directory.
 #' @param mwidth The width of the plot in pixels.
 #' @param mheight The height of the plot in pixels.
+#' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @return The \code{numWords} most frequent words.
 #' @examples
 #' \dontrun{
 #' getMostFreqWord(wordF=myDF,numwords=5)
 #' }
 #' @export
-getMostFreqWord<-function(wordF,numWords,getPlot=TRUE,mwidth=1024,mheight=800){
+getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mheight = 800, 
+  formatType = "png"){
 
   subDir <- "RESULTS"
   dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 
-  mostFreqWords<-NULL
+  mostFreqWords <- NULL
   if(is.numeric(numWords)){
-    if(numWords>nrow(wordF)){numWords<-nrow(wordF)}
-    mostFreqWords<-wordF[1:numWords,1]
-    mostFreqWords<-as.character(mostFreqWords)
+    if(numWords > nrow(wordF)){numWords <- nrow(wordF)}
+    mostFreqWords <- wordF[1:numWords, 1]
+    mostFreqWords <- as.character(mostFreqWords)
   }
-  mXwords<-wordF[1:numWords,2:ncol(wordF)]
+  mXwords <- wordF[1:numWords, 2:ncol(wordF)]
 
-  if(getPlot==TRUE){
-    grDevices::png(filename=paste0('RESULTS/MostFreqWords_',numWords,'.png'),width = mwidth, height = mheight)
-      graphics::plot(1,type="n",xlim=c(1,ncol(mXwords)),ylim=c(0,max(mXwords)),ylab="Occurrences",xlab="",axes=FALSE)
-      graphics::axis(1,at=1:ncol(mXwords),labels=names(wordF[2:ncol(wordF)]),las=2)
+  if(getPlot == TRUE){
+    R.devices::devEval(type = formatType, name = paste0('MostFreqWords_',numWords),
+     aspectRatio = mheight / mwidth,
+     scale = do.call(function(){if((mheight / mwidth) <= 1) {
+       x <- max(mheight / 480, mwidth / 480)} else {
+         x <- min(mheight / 480, mwidth / 480)}
+       return(x)}, list())
+     , path = file.path(getwd(), subDir), {
+      graphics::plot(1, type = "n", xlim = c(1, ncol(mXwords)), ylim = c(0, max(mXwords)), 
+        ylab = "Occurrences", xlab = "", axes = FALSE)
+      graphics::axis(1, at = 1:ncol(mXwords), labels = names(wordF[2:ncol(wordF)]), las = 2)
       graphics::axis(2)
-      mycol<-1:numWords
-      sapply(1:nrow(mXwords),function(i){graphics::points(x=1:ncol(mXwords),y=as.vector(mXwords[i,]),type="o",col=mycol[i],lwd=2)})
-      graphics::legend("topright",legend=as.character(wordF[1:numWords,1]),lty=1,col=mycol,lwd=2)
-    grDevices::dev.off()
+      mycol <- 1:numWords
+      sapply(1:nrow(mXwords), function(i){graphics::points(x = 1:ncol(mXwords), 
+        y = as.vector(mXwords[i,]), type = "o", col = mycol[i], lwd = 2)})
+      graphics::legend("topright", legend = as.character(wordF[1:numWords, 1]), lty = 1, 
+        col = mycol, lwd = 2)
+     }
+    )
   }
-
   return(mostFreqWords)
 }
 
@@ -52,81 +63,97 @@ getMostFreqWord<-function(wordF,numWords,getPlot=TRUE,mwidth=1024,mheight=800){
 #'    associated p-values in a text file in the RESULTS directory.
 #' @param mwidth The width of the plot in pixels.
 #' @param mheight The height of the plot in pixels.
+#' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @return A list with the correlation matrix and the p-value matrix.
 #' @examples
 #' \dontrun{
 #' getMostFreqWordCor(wordF=myDF,numwords=5)
 #' }
 #' @export
-getMostFreqWordCor<-function(wordF,numWords,getPlot=c(TRUE,TRUE),getTextSink=TRUE,mwidth=1024,mheight=1024){ # correlation between words
+getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getTextSink = TRUE,
+  mwidth = 1024, mheight = 1024, formatType = "png"){ # correlation between words
 
   subDir <- "RESULTS"
   dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 
-  if(numWords>nrow(wordF)){numWords<-nrow(wordF)}
-  M<-wordF[,2:ncol(wordF)]
-  matCOR<-matrix(NA,ncol=numWords,nrow=numWords)
+  if(numWords > nrow(wordF)){numWords <- nrow(wordF)}
+  M <- wordF[,2:ncol(wordF)]
+  matCOR <- matrix(NA, ncol = numWords, nrow = numWords)
   for (i in 1:numWords){
     for (j in 1:numWords){
-      matCOR[i,j]<-stats::cor(as.vector(unlist(M[i,])),as.vector(unlist(M[j,])))
+      matCOR[i,j] <- stats::cor(as.vector(unlist(M[i,])), as.vector(unlist(M[j,])))
     }
   }
-  colnames(matCOR)<-wordF[1:numWords,1]
-  rownames(matCOR)<-wordF[1:numWords,1]
+  colnames(matCOR) <- wordF[1:numWords,1]
+  rownames(matCOR) <- wordF[1:numWords,1]
 
-  matCORtest<-matrix(NA,ncol=numWords,nrow=numWords)
+  matCORtest <- matrix(NA, ncol = numWords, nrow = numWords)
   for (i in 1:numWords){
     for (j in 1:numWords){
-      matCORtest[i,j]<-stats::cor.test(as.vector(unlist(M[i,])),as.vector(unlist(M[j,])))$p.value
+      matCORtest[i,j] <- stats::cor.test(as.vector(unlist(M[i,])), as.vector(unlist(M[j,])))$p.value
     }
   }
-  colnames(matCORtest)<-wordF[1:numWords,1]
-  rownames(matCORtest)<-wordF[1:numWords,1]
+  colnames(matCORtest) <- wordF[1:numWords,1]
+  rownames(matCORtest) <- wordF[1:numWords,1]
   # matCORtest[matCORtest>0.05]<-NA
 
-  if(getPlot[2]==TRUE){
-    grDevices::png(filename=paste0('RESULTS/MostFreqWordsCorPvalue_',numWords,'.png'),width = mwidth, height = mheight)
-      graphics::par(mar=c(7,7,1,1))
-      graphics::image(matCORtest,axes=FALSE,col=grDevices::heat.colors(5))
-      graphics::axis(1,at=seq(0,1,length=numWords),labels=colnames(matCOR),las=2)
-      graphics::axis(2,at=seq(0,1,length=numWords),labels=colnames(matCOR),las=1)
-    grDevices::dev.off()
+  if(getPlot[2] == TRUE){
+    R.devices::devEval(type = formatType, name = paste0('MostFreqWordsCorPvalue_',numWords),
+     aspectRatio = mheight / mwidth,
+     scale = do.call(function(){if((mheight / mwidth) <= 1) {
+       x <- max(mheight / 480, mwidth / 480)} else {
+         x <- min(mheight / 480, mwidth / 480)}
+       return(x)}, list())
+     , path = file.path(getwd(), subDir), {
+      graphics::par(mar = c(7, 7, 1, 1))
+      graphics::image(matCORtest, axes = FALSE, col = grDevices::heat.colors(5))
+      graphics::axis(1, at = seq(0, 1, length = numWords), labels = colnames(matCOR), las = 2)
+      graphics::axis(2, at = seq(0, 1, length = numWords), labels = colnames(matCOR), las = 1)
+     }
+    )
   }
 
-  matCorSign<-as.data.frame(matCOR)
-  matCorSign[matCOR<= 1]<-"****"
-  matCorSign[matCOR< 0.999]<-"***"
-  matCorSign[matCOR< 0.75]<-"**"
-  matCorSign[matCOR< 0.50]<-"*"
-  matCorSign[matCOR< 0.25]<-"."
-  matCorSign[matCOR< 0.10]<-""
-  matCorSign[matCOR<(-0.15)]<-""
-  matCorSign[matCOR<(-0.25)]<-"(*)"
-  matCorSign[matCOR<(-0.50)]<-"(**)"
-  matCorSign[matCOR<(-0.75)]<-"(***)"
+  matCorSign <- as.data.frame(matCOR)
+  matCorSign[matCOR <= 1] <- "****"
+  matCorSign[matCOR < 0.999] <- "***"
+  matCorSign[matCOR < 0.75] <- "**"
+  matCorSign[matCOR < 0.50] <- "*"
+  matCorSign[matCOR < 0.25] <- "."
+  matCorSign[matCOR < 0.10] <- ""
+  matCorSign[matCOR < (-0.15)] <- ""
+  matCorSign[matCOR < (-0.25)] <- "(*)"
+  matCorSign[matCOR < (-0.50)] <- "(**)"
+  matCorSign[matCOR < (-0.75)] <- "(***)"
 
-  if(getTextSink==TRUE){
-    sink(paste0('RESULTS/MostFreqWordsCor_',numWords,'.txt'))
+  if(getTextSink == TRUE){
+    sink(paste0('RESULTS/MostFreqWordsCor_', numWords, '.txt'))
     cat('\n#######################\n### RAW             ###\n#######################\n')
-    try(print(matCOR),silent=TRUE)
+    try(print(matCOR), silent = TRUE)
     cat('\n#######################\n### SIGN            ###\n#######################\n')
     cat('# -1;-0.75		(***)\n# -0.75;-0.5	(**)\n# -0.5;-0.25	(*)\n# -0.25;-0.10	(.)\n# -0.10;0.10	\n# 0.10;0.25		.\n# 0.25;0.5		*\n# 0.5;0.75		**\n# 0.75;0.999	***\n# 0.999;1		****\n\n')
-    try(print(matCorSign),silent=TRUE)
+    try(print(matCorSign), silent = TRUE)
     cat('\n#######################\n### PVALUE          ###\n#######################\n')
-    try(print(matCORtest),silent=TRUE)
+    try(print(matCORtest), silent = TRUE)
     sink()
   }
 
-  if(getPlot[1]==TRUE){
-    grDevices::png(filename=paste0('RESULTS/MostFreqWordsCor_',numWords,'.png'),width = mwidth, height = mheight)
-      graphics::par(mar=c(7,7,1,1))
-      graphics::image(abs(matCOR),axes=FALSE,col=rev(grDevices::heat.colors(5)))
-      graphics::axis(1,at=seq(0,1,length=numWords),labels=colnames(matCOR),las=2)
-      graphics::axis(2,at=seq(0,1,length=numWords),labels=colnames(matCOR),las=1)
-    grDevices::dev.off()
+  if(getPlot[1] == TRUE){
+    R.devices::devEval(type = formatType, name = paste0('MostFreqWordsCor_',numWords),
+     aspectRatio = mheight / mwidth,
+     scale = do.call(function(){if((mheight / mwidth) <= 1) {
+       x <- max(mheight / 480, mwidth / 480)} else {
+         x <- min(mheight / 480, mwidth / 480)}
+       return(x)}, list())
+     , path = file.path(getwd(), subDir), {
+      graphics::par(mar = c(7, 7, 1, 1))
+      graphics::image(abs(matCOR), axes = FALSE, col = rev(grDevices::heat.colors(5)))
+      graphics::axis(1, at = seq(0, 1, length = numWords), labels = colnames(matCOR), las = 2)
+      graphics::axis(2, at = seq(0, 1, length = numWords), labels = colnames(matCOR), las = 1)
+     }
+    )
   }
 
-  return(list(cor=matCOR,pval=matCORtest))
+  return(list(cor = matCOR, pval = matCORtest))
 }
 
 #' Returns most frequent words

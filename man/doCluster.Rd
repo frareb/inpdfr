@@ -5,7 +5,7 @@
 \title{Performs a cluster analysis on the basis of the word-occurrence data.frame.}
 \usage{
 doCluster(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5,
-  getPlot = TRUE, mwidth = 800, mheight = 800, ...)
+  getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -22,6 +22,8 @@ function.}
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 
 \item{...}{Additional arguments from the \code{\link[stats]{hclust}} function.}
 }

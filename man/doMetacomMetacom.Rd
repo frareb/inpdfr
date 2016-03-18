@@ -5,7 +5,7 @@
 \title{Performs a metacomunity analysis.}
 \usage{
 doMetacomMetacom(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
-  getTextSink = TRUE, mwidth = 800, mheight = 800)
+  getTextSink = TRUE, mwidth = 800, mheight = 800, formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -21,6 +21,8 @@ doMetacomMetacom(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \value{
 An object of class \code{\link[metacom]{Metacommunity}}.

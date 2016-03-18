@@ -20,7 +20,7 @@ Exclude StopWords form the word occurrences data.frame. \code{excludeStopWords}
 }
 \examples{
 \dontrun{
-excludeStopWords(wordF=myDF,lang="French")
+excludeStopWords(wordF = myDF, lang = "French")
 }
 }
 

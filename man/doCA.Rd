@@ -4,7 +4,8 @@
 \alias{doCA}
 \title{Performs a correspondance analysis on the basis of the word-occurrence data.frame.}
 \usage{
-doCA(wordF, getPlot = TRUE, mwidth = 800, mheight = 800, ...)
+doCA(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
+  formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -15,6 +16,8 @@ directory.}
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 
 \item{...}{Additional arguments from the \code{\link[ca]{ca}} function.}
 }

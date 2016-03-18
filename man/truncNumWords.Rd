@@ -19,7 +19,7 @@ Truncate the word-occurrence data.frame.
 }
 \examples{
 \dontrun{
-truncNumWords(wordF=myWordOccurrenceDF,maxWords=50)
+truncNumWords(wordF = myWordOccurrenceDF, maxWords = 50)
 }
 }
 

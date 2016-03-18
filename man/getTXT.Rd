@@ -18,7 +18,7 @@ Extract text from TXT files and return a word-occurrence data.frame.
 }
 \examples{
 \dontrun{
-getTXT(myTXTs="mytxt.txt")
+getTXT(myTXTs = "mytxt.txt")
 }
 }
 

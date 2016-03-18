@@ -6,12 +6,13 @@
 \usage{
 makeWordcloud(wordF, wcFormat = "png", wcminFreq = 3, wcmaxWords = Inf,
   wcRandOrder = FALSE, wcCol = RColorBrewer::brewer.pal(8, "Dark2"),
-  getPlot = c(TRUE, TRUE), mwidth = 1000, mheight = 1000)
+  getPlot = c(TRUE, TRUE), mwidth = 1000, mheight = 1000,
+  formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
 
-\item{wcFormat}{Output format for the word cloud (available option: "png").}
+\item{wcFormat}{Output format for the word cloud (deprecated, only "png").}
 
 \item{wcminFreq}{Minimum word frequency for words to be ploted (see \code{\link[wordcloud]{wordcloud}}).}
 
@@ -27,13 +28,15 @@ If \code{plots[2]==TRUE}, a word cloud is made for the combinaison of all docume
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \description{
 Plot a word cloud from the word-occurrence data.frame using \code{\link[wordcloud]{wordcloud}} function.
 }
 \examples{
 \dontrun{
-makeWordcloud(wordF=myDF)
+makeWordcloud(wordF = myDF)
 }
 }
 

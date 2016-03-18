@@ -5,7 +5,7 @@
 \title{Test for correlation between the most frequent words.}
 \usage{
 getMostFreqWordCor(wordF, numWords, getPlot = c(TRUE, TRUE),
-  getTextSink = TRUE, mwidth = 1024, mheight = 1024)
+  getTextSink = TRUE, mwidth = 1024, mheight = 1024, formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -23,6 +23,8 @@ associated p-values in a text file in the RESULTS directory.}
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \value{
 A list with the correlation matrix and the p-value matrix.
@@ -32,7 +34,7 @@ Test for correlation between the most frequent words.
 }
 \examples{
 \dontrun{
-getMostFreqWordCor(wordF=myDF,numwords=5)
+getMostFreqWordCor(wordF = myDF, numwords = 5)
 }
 }
 

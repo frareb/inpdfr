@@ -5,7 +5,7 @@
 \title{Returns most frequent words.}
 \usage{
 getMostFreqWord(wordF, numWords, getPlot = TRUE, mwidth = 1024,
-  mheight = 800)
+  mheight = 800, formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -17,6 +17,8 @@ getMostFreqWord(wordF, numWords, getPlot = TRUE, mwidth = 1024,
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \value{
 The \code{numWords} most frequent words.
@@ -26,7 +28,7 @@ Returns most frequent words and plots their frequencies per document.
 }
 \examples{
 \dontrun{
-getMostFreqWord(wordF=myDF,numwords=5)
+getMostFreqWord(wordF = myDF, numwords = 5)
 }
 }
 

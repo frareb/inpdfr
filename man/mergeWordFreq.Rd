@@ -17,7 +17,7 @@ Merge word-occurrence data.frames into a single data.frame.
 }
 \examples{
 \dontrun{
-mergeWordFreq(wordF=myWordOccurrenceDF)
+mergeWordFreq(wordF = myWordOccurrenceDF)
 }
 }
 

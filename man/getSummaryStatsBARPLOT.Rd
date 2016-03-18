@@ -4,8 +4,8 @@
 \alias{getSummaryStatsBARPLOT}
 \title{Perform a barplot with the number of unique words per document}
 \usage{
-getSummaryStatsBARPLOT(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
-  ...)
+getSummaryStatsBARPLOT(wordF, getPlot = TRUE, mwidth = 480, mheight = 480,
+  formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -15,6 +15,8 @@ getSummaryStatsBARPLOT(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 
 \item{...}{Additional arguments from \code{barplot} function.}
 }

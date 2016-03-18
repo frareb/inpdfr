@@ -5,7 +5,7 @@
 \title{Performs a k-means cluster analysis on the basis of the word-occurrence data.frame.}
 \usage{
 doKmeansClust(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong",
-  getPlot = TRUE, mwidth = 800, mheight = 800, ...)
+  getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -21,6 +21,8 @@ doKmeansClust(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong",
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 
 \item{...}{Additional arguments from the \code{\link[stats]{kmeans}} function.}
 }

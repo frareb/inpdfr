@@ -5,7 +5,8 @@
 \title{Performs an analysis of ecological diversity and structure.}
 \usage{
 doMetacomEntropart(wordF, getPlot = c(TRUE, TRUE, TRUE, TRUE),
-  getTextSink = c(TRUE, TRUE, TRUE, TRUE), mwidth = 800, mheight = 800)
+  getTextSink = c(TRUE, TRUE, TRUE, TRUE), mwidth = 800, mheight = 800,
+  formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -27,6 +28,8 @@ the \code{DivProfile} analisis is saved in the RESULTS directory.}
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \value{
 A \code{MetaCommunity} object (see \code{\link[entropart]{entropart-package}}).

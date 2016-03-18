@@ -19,7 +19,7 @@ Returns most frequent words
 }
 \examples{
 \dontrun{
-getXFreqWord(wordF=myDF,occuWords=5)
+getXFreqWord(wordF = myDF, occuWords = 5)
 }
 }
 

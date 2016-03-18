@@ -17,6 +17,6 @@ List files in a specified directory sorted by extension. The function takes
   into account .txt and .pdf files based on \code{strsplit} function.
 }
 \examples{
-getListFiles(mywd=getwd())
+getListFiles(mywd = getwd())
 }
 

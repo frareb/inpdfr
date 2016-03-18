@@ -4,7 +4,8 @@
 \alias{getSummaryStatsHISTO}
 \title{Plot an histogram with the number of words excluding stop words}
 \usage{
-getSummaryStatsHISTO(wordF, mwidth = 800, mheight = 800, ...)
+getSummaryStatsHISTO(wordF, mwidth = 800, mheight = 800,
+  formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -13,6 +14,8 @@ getSummaryStatsHISTO(wordF, mwidth = 800, mheight = 800, ...)
 
 \item{mheight}{The height of the plot in pixels.}
 
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
+
 \item{...}{Additional arguments from \code{hist} function.}
 }
 \description{
@@ -20,7 +23,7 @@ Plot a histogram with the number of words excluding stop words using \code{\link
 }
 \examples{
 \dontrun{
-getSummaryStatsHISTO(wordF=myDF)
+getSummaryStatsHISTO(wordF = myDF)
 }
 }
 

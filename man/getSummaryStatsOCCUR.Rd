@@ -4,7 +4,8 @@
 \alias{getSummaryStatsOCCUR}
 \title{Plot a scatter plot with the proportion of documents using similar words.}
 \usage{
-getSummaryStatsOCCUR(wordF, getPlot = TRUE, mwidth = 800, mheight = 800)
+getSummaryStatsOCCUR(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
+  formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
@@ -14,6 +15,8 @@ getSummaryStatsOCCUR(wordF, getPlot = TRUE, mwidth = 800, mheight = 800)
 \item{mwidth}{The width of the plot in pixels.}
 
 \item{mheight}{The height of the plot in pixels.}
+
+\item{formatType}{The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").}
 }
 \value{
 A data.frame containing the proportion of documents and the number of similar words.
@@ -23,7 +26,7 @@ Plot a scatter plot with the proportion of documents using similar words.
 }
 \examples{
 \dontrun{
-getSummaryStatsOCCUR(wordF=myDF)
+getSummaryStatsOCCUR(wordF = myDF)
 }
 }
 

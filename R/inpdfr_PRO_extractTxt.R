@@ -23,41 +23,41 @@
 #' getPDF(myPDFs="mypdf.pdf")
 #' }
 #' @export
-getPDF<-function(myPDFs,minword=1,maxword=20,minFreqWord=1,pathToPdftotext=""){
-  ncores<-parallel::detectCores()
-  if(length(myPDFs)<ncores){ncores<-length(myPDFs)}
-  cl<-parallel::makeCluster(ncores)
-  # parallel::clusterExport(cl=cl, varlist=c("minword","maxword","minFreqWord"))  ### for testing purposes
-  parallel::clusterExport(cl=cl, varlist=c("pathToPdftotext", "preProcTxt", "postProcTxt"), envir=environment())
+getPDF <- function(myPDFs, minword = 1, maxword = 20, minFreqWord = 1, pathToPdftotext = ""){
+  ncores <- parallel::detectCores()
+  if(length(myPDFs)<ncores){ncores <- length(myPDFs)}
+  cl <- parallel::makeCluster(ncores)
+  # parallel::clusterExport(cl = cl, varlist = c("minword","maxword","minFreqWord"))  ### for testing purposes
+  parallel::clusterExport(cl = cl, varlist = c("pathToPdftotext", "preProcTxt", "postProcTxt"), envir = environment())
   parallel::clusterEvalQ(cl, {library(tm); library(SnowballC)})
   on.exit(parallel::stopCluster(cl))
-  d<-parallel::parLapply(cl,myPDFs,function(i){ # lapply to all PDF files
+  d <- parallel::parLapply(cl, myPDFs, function(i){ # lapply to all PDF files
     if (Sys.info()[1]=="Windows"){ # extract txt from PDF with Windows
       tryCatch(system(paste0("\"pdftotext\" \"", i, "\""), wait = TRUE),
-        error=system(paste("\"", pathToPdftotext, "\" \"", i, "\"", sep = ""), wait = TRUE))
+        error = system(paste("\"", pathToPdftotext, "\" \"", i, "\"", sep = ""), wait = TRUE))
       # system(paste("\"", pathToPdftotext, "\" \"", i, "\"", sep = ""), wait = TRUE)
     }else{
       if (Sys.info()[1]=="Linux"){
-        system(paste("pdftotext" ,i,sep=" "), wait = TRUE) # extract txt from PDF with Linux
+        system(paste("pdftotext" , i, sep = " "), wait = TRUE) # extract txt from PDF with Linux
       }else{ ### MacOS = "/"
-        system(paste("pdftotext" ,i,sep=" "), wait = TRUE) # extract txt from PDF with Mac OSX
+        system(paste("pdftotext" , i, sep = " "), wait = TRUE) # extract txt from PDF with Mac OSX
       }
     }
-    filetxt <- paste(strsplit(i,split="\\.")[[1]][1],".txt",sep="")
-    txt<-preProcTxt(filetxt)
+    filetxt <- paste(strsplit(i, split = "\\.")[[1]][1], ".txt", sep = "")
+    txt <- preProcTxt(filetxt)
     if (length(txt)<5){
       print(paste0("File ", filetxt, " does not contain text and will be ignored."))
-      txt<-NULL
+      txt <- NULL
       file.remove(filetxt)
     }
-    d1<-postProcTxt(txt=txt,minword=minword,maxword=maxword,minFreqWord=minFreqWord)
-    d2<-strsplit(filetxt,split="\\.")[[1]][1]
-    d<-list(wc=d1,name=d2)
-    if(nrow(d[[1]])==0){d<-NULL}
+    d1 <- postProcTxt(txt = txt, minword = minword, maxword = maxword, minFreqWord = minFreqWord)
+    d2 <- strsplit(filetxt, split = "\\.")[[1]][1]
+    d <- list(wc = d1, name = d2)
+    if(nrow(d[[1]])==0){d <- NULL}
     file.remove(filetxt) # remove file
     return(d)
   })
-  d<-d[vapply(d, Negate(is.null), NA)]
+  d <- d[vapply(d, Negate(is.null), NA)]
   return(d)
 }
 
@@ -68,13 +68,13 @@ getPDF<-function(myPDFs,minword=1,maxword=20,minFreqWord=1,pathToPdftotext=""){
 #' @return A list of list with word-occurrence data.frame and file name.
 #' @examples
 #' \dontrun{
-#' getTXT(myTXTs="mytxt.txt")
+#' getTXT(myTXTs = "mytxt.txt")
 #' }
 #' @export
-getTXT<-function(myTXTs){
-	lapply(myTXTs,function(i){
-		txt<-preProcTxt(i)
-		d<-postProcTxt(txt=txt)
+getTXT <- function(myTXTs){
+	lapply(myTXTs, function(i){
+		txt <- preProcTxt(i)
+		d <- postProcTxt(txt = txt)
 		return(d)
 	})
 }

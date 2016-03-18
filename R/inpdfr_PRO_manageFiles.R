@@ -6,16 +6,16 @@
 #' @param mywd A string containing the working directory.
 #' @return A list of length 2 with file names sorted by extension (pdf and txt).
 #' @examples
-#' getListFiles(mywd=getwd())
+#' getListFiles(mywd = getwd())
 #' @export
-getListFiles<-function(mywd){
+getListFiles <- function(mywd){
   setwd(mywd)
-  listFiles<-list.files(pattern="\\.")
-  listFilesExt<-list(pdf=c(),txt=c())
+  listFiles <- list.files(pattern = "\\.")
+  listFilesExt <- list(pdf = c(), txt = c())
   for(i in listFiles){
-    myplitExt<-strsplit(i,split="\\.")[[1]][2]
-    if (myplitExt == "pdf"){listFilesExt$pdf<-c(listFilesExt$pdf,i)}
-    if (myplitExt == "txt"){listFilesExt$txt<-c(listFilesExt$txt,i)}
+    myplitExt <- strsplit(i, split = "\\.")[[1]][2]
+    if (myplitExt == "pdf"){listFilesExt$pdf <- c(listFilesExt$pdf, i)}
+    if (myplitExt == "txt"){listFilesExt$txt <- c(listFilesExt$txt, i)}
   }
   return(listFilesExt)
 }
@@ -33,9 +33,9 @@ getListFiles<-function(mywd){
 #' quitSpaceFromChars(c("my pdf.pdf","my other pdf.pdf"))
 #' }
 #' @export
-quitSpaceFromChars<-function(vectxt){ # delete spaces from file names, adapted from : https://gist.github.com/benmarwick/11333467
-  isRenamed<-sapply(vectxt, FUN = function(i){
-    file.rename(from = i, to =  paste0(dirname(i), "/", gsub(" ", "", basename(i))))
+quitSpaceFromChars <- function(vectxt){ # delete spaces from file names, adapted from : https://gist.github.com/benmarwick/11333467
+  isRenamed <- sapply(vectxt, FUN = function(i){
+    file.rename(from = i, to = paste0(dirname(i), "/", gsub(" ", "", basename(i))))
   })
   return(isRenamed)
 }

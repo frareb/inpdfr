@@ -10,46 +10,55 @@
 #' @param getTextSink If \code{TRUE}, save the console output in the RESULTS directory.
 #' @param mwidth The width of the plot in pixels.
 #' @param mheight The height of the plot in pixels.
+#' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @return An object of class \code{\link[metacom]{Metacommunity}}.
 #' @examples
 #' \dontrun{
 #' doMetacomMetacom(wordF=myDF)
 #' }
 #' @export
-doMetacomMetacom<-function(wordF,numSim=10,limit="Inf",getPlot=TRUE,getTextSink=TRUE,mwidth=800,mheight=800){
+doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE, 
+  getTextSink = TRUE, mwidth = 800, mheight = 800, formatType = "png"){
 
   subDir <- "RESULTS"
   dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 
-  if(is.numeric(limit) && limit!=Inf && limit!="Inf"){
-    wordF<-wordF[1:limit,]
+  if(is.numeric(limit) && limit != Inf && limit != "Inf"){
+    wordF <- wordF[1:limit,]
   }
 
-  metacomDB<-wordF[,2:length(wordF[1,])]
-  metacomDB[metacomDB>=1]<-1
-  rownames(metacomDB)<-wordF[,1]
-  metacomDB<-t(metacomDB)
-  metaCom<-metacom::Metacommunity((metacomDB),sims=numSim, allow.empty=TRUE)
+  metacomDB <- wordF[,2:length(wordF[1,])]
+  metacomDB[metacomDB >= 1] <- 1
+  rownames(metacomDB) <- wordF[,1]
+  metacomDB <- t(metacomDB)
+  metaCom <- metacom::Metacommunity((metacomDB), sims = numSim, allow.empty = TRUE)
 
-  if(getPlot==TRUE){
-    grDevices::png(filename="RESULTS/metacom_Metacommunity.png",width = mwidth, height = mheight)
-    try(metacom::Imagine((metacomDB), col=c(0,grDevices::grey(0.6))),silent=TRUE)
-    grDevices::dev.off()
+  if(getPlot == TRUE){
+    R.devices::devEval(type = formatType, name = "metacom_Metacommunity",
+     aspectRatio = mheight / mwidth,
+     scale = do.call(function(){if((mheight / mwidth) <= 1) {
+       x <- max(mheight / 480, mwidth / 480)} else {
+         x <- min(mheight / 480, mwidth / 480)}
+       return(x)}, list())
+     , path = file.path(getwd(), subDir), {
+      try(metacom::Imagine((metacomDB), col = c(0, grDevices::grey(0.6))), silent = TRUE)
+     }
+    )
   }
 
-  if(getTextSink==TRUE){
+  if(getTextSink == TRUE){
     sink('RESULTS/metacom_Metacommunity.txt')
     cat('\n#######################\n### STRUCTURE       ###\n#######################\n')
-    try(print(metacom::IdentifyStructure(metaCom)),silent=TRUE)
+    try(print(metacom::IdentifyStructure(metaCom)), silent = TRUE)
     cat('\n#######################\n### SUMMARY         ###\n#######################\n')
-    try(print(summary(metaCom)),silent=TRUE)
+    try(print(summary(metaCom)), silent = TRUE)
     cat('\n#######################\n### RESULTS         ###\n#######################\n')
-    try(print(metaCom),silent=TRUE)
+    try(print(metaCom), silent = TRUE)
     sink()
   }
 
-  try(print(paste0("Identified community structure: ",metacom::IdentifyStructure(metaCom))),silent=TRUE)
+  try(print(paste0("Identified community structure: ", metacom::IdentifyStructure(metaCom))), silent = TRUE)
 
-  metaComPkg<-metaCom
+  metaComPkg <- metaCom
   return(metaComPkg)
 }

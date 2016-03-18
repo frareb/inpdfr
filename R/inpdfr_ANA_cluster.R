@@ -86,6 +86,7 @@ doKmeansClust <- function(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong
   mwidth = 800, mheight = 800, formatType = "png", ...){
   ## create RESULTS folder
   subDir <- "RESULTS"
+  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
   ## make kmeans-cluster analysis
   if(ncol(wordF)>3){
     dd <-(stats::dist(t(as.matrix(wordF[,2:length(wordF[1,])])), method="euclidian"))# ,colnames=fileNames

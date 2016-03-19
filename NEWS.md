@@ -1,8 +1,8 @@
-## package inpdfr v0.1.1.9000
+## package inpdfr v0.1.2
 * DESCRIPTION file allow package parallel (>= 3.1.3) to pass 
     "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
 * R.devices package used to export output files
-* code syntax improvments
+* code syntax improvements
 
 ## package inpdfr v0.1.1
 * URL fixed to download GTK+ in man/loadGUI.Rd

@@ -23,11 +23,11 @@ Prossess vectors containing words into a data.frame of word occurrences.
 }
 \examples{
 \dontrun{
-postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"), minword = 1, maxword = 20, minFreqWord = 1)
+postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"))
 }
 \dontrun{
 data(loremIpsum)
-postProcTxt(txt = loremIpsum, minword = 1, maxword = 20, minFreqWord = 1)
+postProcTxt(txt = loremIpsum)
 }
 }
 

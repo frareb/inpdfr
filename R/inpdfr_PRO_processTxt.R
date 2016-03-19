@@ -35,11 +35,11 @@ preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
 #' @return A data.frame (freq = occurrences, stem = stem words, word = words), sorted by word occurrences.
 #' @examples
 #' \dontrun{
-#' postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"), minword = 1, maxword = 20, minFreqWord = 1)
+#' postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"))
 #' }
 #' \dontrun{
 #' data(loremIpsum)
-#' postProcTxt(txt = loremIpsum, minword = 1, maxword = 20, minFreqWord = 1)
+#' postProcTxt(txt = loremIpsum)
 #' }
 #' @export
 postProcTxt <- function(txt, minword = 1, maxword = 20, minFreqWord = 1){

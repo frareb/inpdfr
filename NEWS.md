@@ -1,5 +1,5 @@
 ## package inpdfr v0.1.2
-* DESCRIPTION file allow package parallel (>= 3.1.3) to pass 
+* DESCRIPTION file allows package parallel (>= 3.1.3) to pass 
     "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
 * R.devices package used to export output files
 * code syntax improvements

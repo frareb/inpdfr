@@ -2,12 +2,12 @@
 
 ## Resubmission
 This is a resubmission. In this version I have:
-* fixed the URL to download GTK+ in man/loadGUI.Rd
-* fixed the NOTE "Strong dependencies not in mainstream repositories: Rstem". Word stem is now performed with the SnowballC package.
-* added the missing @export roxygen field for function getwordOccuDF
-* added the missing @export roxygen field for function getAllAnalysis
+* allowed package parallel (>= 3.1.3) in DESCRIPTION file to pass 
+    "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
+* improved file export using R.devices
+* improved code syntax
 
-All modifications were commented into the NEWS.md file and package version updated to 0.1.1
+All modifications were commented into the NEWS.md file and package version updated to 0.1.2
 
 ## Test environments
 * Windows 10, R version 3.2.3

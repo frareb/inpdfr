@@ -17,7 +17,7 @@ A quick way to compute a set of analysis from the word-occurrence data.frame.
 }
 \examples{
 \dontrun{
-getAllAnalysis(dataset=myDF)
+getAllAnalysis(dataset = myDF)
 }
 }
 

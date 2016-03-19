@@ -19,7 +19,7 @@ A quick way to obtain the word-occurrence data.frame from a set of documents.
 }
 \examples{
 \dontrun{
-getwordOccuDF(mywd=getwd(),language="English")
+getwordOccuDF(mywd = getwd(), language = "English")
 }
 }
 

@@ -99,7 +99,8 @@ doKmeansClust <- function(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong
             x <- min(mheight / 480, mwidth / 480)}
           return(x)}, list())
         , path = file.path(getwd(), subDir), {
-        try(cluster::clusplot(as.matrix(dd), kfit$cluster, color=T, shade=T, labels=2, lines=0),silent=TRUE)
+        try(cluster::clusplot(as.matrix(dd), kfit$cluster, color = TRUE, 
+          shade = TRUE, labels = 2, lines = 0), silent = TRUE)
         }
       )
     }

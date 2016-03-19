@@ -37,7 +37,7 @@ doCA <- function(wordF, getPlot = TRUE, mwidth = 800, mheight = 800, formatType 
            x <- min(mheight / 480, mwidth / 480)}
          return(x)}, list())
        , path = file.path(getwd(), subDir), {
-        try(graphics::plot(fitCa,labels=c(0,2)),silent=TRUE)
+        try(graphics::plot(fitCa,labels = c(0, 2)), silent = TRUE)
        }
       )
     }

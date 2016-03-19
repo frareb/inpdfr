@@ -23,8 +23,5 @@ Cheking CRAN incoming feasibility ... NOTE
 * Maintainer: 'Rebaudo Francois <francois.rebaudo@ird.fr>'
 => ok
 
-* New submission
-=> ok
-
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.

@@ -24,4 +24,4 @@ Cheking CRAN incoming feasibility ... NOTE
 => ok
 
 ## Downstream dependencies
-There are currently no downstream dependencies for this package.
+ok using devtools::revdep_check().

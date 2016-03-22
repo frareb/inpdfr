@@ -2,6 +2,7 @@
 
 ## Resubmission
 This is a resubmission. In this version I have:
+* improved examples, as suggested by Uwe Ligges
 * allowed package parallel (>= 3.1.3) in DESCRIPTION file to pass 
     "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
 * improved file export using R.devices
@@ -12,7 +13,6 @@ All modifications were commented into the NEWS.md file and package version updat
 ## Test environments
 * Windows 10, R version 3.2.3
 * Linux Debian Jessie, R version 3.2.3
-* Linux Ubuntu LTS 12.04, R version 3.2.3
 * Windows, R-devel with win-builder.r-project.org
 
 ## R CMD check results

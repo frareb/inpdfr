@@ -3,6 +3,7 @@
     "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
 * R.devices package used to export output files
 * code syntax improvements
+* examples improvements
 
 ## package inpdfr v0.1.1
 * URL fixed to download GTK+ in man/loadGUI.Rd

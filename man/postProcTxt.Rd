@@ -25,9 +25,12 @@ Prossess vectors containing words into a data.frame of word occurrences.
 \dontrun{
 postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"))
 }
-\dontrun{
-data(loremIpsum)
-postProcTxt(txt = loremIpsum)
-}
+data("loremIpsum")
+subDir <- "RESULTS"
+dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+write(x = loremIpsum, file = "RESULTS/loremIpsum.txt")
+preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
+postProcTxt(txt = preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt")))
+file.remove(list.files(pattern = "loremIpsum"))
 }
 

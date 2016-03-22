@@ -18,8 +18,6 @@ The function returns a logical for each file, with TRUE if the file
 Delete spaces in file names located in the current working directory.
 }
 \examples{
-\dontrun{
 quitSpaceFromChars(c("my pdf.pdf","my other pdf.pdf"))
-}
 }
 

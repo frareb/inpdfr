@@ -5,9 +5,12 @@
 #' @param encodingOut Encoding of the text extracted (default = "UTF-8").
 #' @return A character vector with the content of the pre-process txt file (one element per line).
 #' @examples
-#' \dontrun{
-#' preProcTxt(filetxt = "loremIpsum.txt")
-#' }
+#' data("loremIpsum")
+#' subDir <- "RESULTS"
+#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+#' write(x = loremIpsum, file = "RESULTS/loremIpsum.txt")
+#' preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
+#' file.remove(list.files(pattern = "loremIpsum"))
 #' @export
 preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
   zz <- file(filetxt, 'r', encoding = encodingIn)
@@ -37,10 +40,13 @@ preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
 #' \dontrun{
 #' postProcTxt(txt = preProcTxt(filetxt = "loremIpsum.txt"))
 #' }
-#' \dontrun{
-#' data(loremIpsum)
-#' postProcTxt(txt = loremIpsum)
-#' }
+#' data("loremIpsum")
+#' subDir <- "RESULTS"
+#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+#' write(x = loremIpsum, file = "RESULTS/loremIpsum.txt")
+#' preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
+#' postProcTxt(txt = preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt")))
+#' file.remove(list.files(pattern = "loremIpsum"))
 #' @export
 postProcTxt <- function(txt, minword = 1, maxword = 20, minFreqWord = 1){
   txtMerged <- paste(txt, collapse = ' ')

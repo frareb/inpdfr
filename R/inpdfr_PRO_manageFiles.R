@@ -29,9 +29,7 @@ getListFiles <- function(mywd){
 #' @return The function returns a logical for each file, with TRUE if the file
 #'   has been found, and FALSE otherwise.
 #' @examples
-#' \dontrun{
 #' quitSpaceFromChars(c("my pdf.pdf","my other pdf.pdf"))
-#' }
 #' @export
 quitSpaceFromChars <- function(vectxt){ # delete spaces from file names, adapted from : https://gist.github.com/benmarwick/11333467
   isRenamed <- sapply(vectxt, FUN = function(i){

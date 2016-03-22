@@ -38,7 +38,7 @@ and uses \code{parallel} to perform parallel computation.
 }
 \examples{
 \dontrun{
-getPDF(myPDFs="mypdf.pdf")
+getPDF(myPDFs = "mypdf.pdf")
 }
 }
 

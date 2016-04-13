@@ -2,13 +2,9 @@
 
 ## Resubmission
 This is a resubmission. In this version I have:
-* improved examples, as suggested by Uwe Ligges
-* allowed package parallel (>= 3.1.3) in DESCRIPTION file to pass 
-    "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"
-* improved file export using R.devices
-* improved code syntax
+* renamed arguments for R package metacom, following new release
 
-All modifications were commented into the NEWS.md file and package version updated to 0.1.2
+All modifications were commented into the NEWS.md file and package version updated to 0.1.3
 
 ## Test environments
 * Windows 10, R version 3.2.3

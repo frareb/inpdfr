@@ -1,3 +1,6 @@
+## package inpdfr v0.1.3
+* renamed arguments for R package metacom, following new release
+
 ## package inpdfr v0.1.2
 * DESCRIPTION file allows package parallel (>= 3.1.3) to pass 
     "r-oldrel-windows-ix86+x86_64" test from "CRAN Package Check Results"

@@ -45,7 +45,7 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
   metacomDB[metacomDB >= 1] <- 1
   rownames(metacomDB) <- wordF[,1]
   metacomDB <- t(metacomDB)
-  metaCom <- metacom::Metacommunity((metacomDB), sims = numSim, allow.empty = TRUE)
+  metaCom <- metacom::Metacommunity(comm = metacomDB, sims = numSim, allowEmpty = TRUE)
 
   if(getPlot == TRUE){
     R.devices::devEval(type = formatType, name = "metacom_Metacommunity",
@@ -55,7 +55,7 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
          x <- min(mheight / 480, mwidth / 480)}
        return(x)}, list())
      , path = file.path(getwd(), subDir), {
-      try(metacom::Imagine((metacomDB), col = c(0, grDevices::grey(0.6))), silent = TRUE)
+      try(metacom::Imagine(comm = metacomDB, col = c(0, grDevices::grey(0.6))), silent = TRUE)
      }
     )
   }

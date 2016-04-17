@@ -8,7 +8,6 @@ All modifications were commented into the NEWS.md file and package version updat
 
 ## Test environments
 * Windows 10, R version 3.2.5
-* Linux Debian Jessie, R version 3.2.3
 * Linux Ubuntu 12.04, R version 3.2.5
 * Windows, R-devel with win-builder.r-project.org
 

@@ -2,14 +2,15 @@
 
 ## Resubmission
 This is a resubmission. In this version I have:
-* renamed arguments for R package metacom, following new release 1.4.4
+* included the identifyStructure function which was no longer 
+  part of the metacom package. 
 
-All modifications were commented into the NEWS.md file and package version updated to 0.1.3
+All modifications were commented into the NEWS.md file and package version updated to 0.1.4
 
 ## Test environments
-* Windows 10, R version 3.2.5
-* Linux Ubuntu 12.04, R version 3.2.5
-* Windows, R-devel with win-builder.r-project.org
+* Windows 10, R version 3.3.2
+* Linux XXX
+* Windows, R-devel 2017-02-24 r72255
 
 ## R CMD check results
 There were no ERRORs,WARNINGs, or NOTEs with R 3.2.5 and 1 NOTE with R-devel:

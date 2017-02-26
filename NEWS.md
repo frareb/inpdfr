@@ -1,3 +1,6 @@
+## package inpdfr v0.1.4
+* identifyStructure function included in the package
+
 ## package inpdfr v0.1.3
 * renamed arguments for R package metacom, following new release
 

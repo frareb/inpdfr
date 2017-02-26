@@ -63,7 +63,7 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
   if(getTextSink == TRUE){
     sink('RESULTS/metacom_Metacommunity.txt')
     cat('\n#######################\n### STRUCTURE       ###\n#######################\n')
-    try(print(metacom::IdentifyStructure(metaCom)), silent = TRUE)
+    try(print(IdentifyStructure(metaCom)), silent = TRUE)
     cat('\n#######################\n### SUMMARY         ###\n#######################\n')
     try(print(summary(metaCom)), silent = TRUE)
     cat('\n#######################\n### RESULTS         ###\n#######################\n')
@@ -71,7 +71,7 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
     sink()
   }
 
-  try(print(paste0("Identified community structure: ", metacom::IdentifyStructure(metaCom))), silent = TRUE)
+  try(print(paste0("Identified community structure: ", IdentifyStructure(metaCom))), silent = TRUE)
 
   metaComPkg <- metaCom
   return(metaComPkg)

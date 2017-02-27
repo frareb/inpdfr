@@ -37,4 +37,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
   excludeSW = FALSE)
 file.remove(list.files(pattern = "loremIpsum"))
 }
-

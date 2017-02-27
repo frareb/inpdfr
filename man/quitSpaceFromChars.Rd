@@ -20,4 +20,3 @@ Delete spaces in file names located in the current working directory.
 \examples{
 quitSpaceFromChars(c("my pdf.pdf","my other pdf.pdf"))
 }
-

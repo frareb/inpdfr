@@ -19,4 +19,3 @@ List files in a specified directory sorted by extension. The function takes
 \examples{
 getListFiles(mywd = getwd())
 }
-

@@ -24,4 +24,3 @@ Load the Graphical user Interface in order to use \code{inpdfr} package through
 loadGUI()
 }
 }
-

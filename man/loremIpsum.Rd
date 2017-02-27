@@ -15,4 +15,3 @@ loremIpsum
 A vector containing a Lorem Ipsum text for testing purposes.
 }
 \keyword{datasets}
-

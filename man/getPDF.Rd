@@ -41,4 +41,3 @@ and uses \code{parallel} to perform parallel computation.
 getPDF(myPDFs = "mypdf.pdf")
 }
 }
-

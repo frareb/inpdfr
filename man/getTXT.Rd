@@ -34,4 +34,3 @@ wordOccuFreq <- getTXT(myTXTs = list.files(path = paste0(getwd(),
   "/RESULTS/"), pattern = "loremIpsum", full.names = TRUE))
 file.remove(list.files(pattern = "loremIpsum"))
 }
-

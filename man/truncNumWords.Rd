@@ -22,4 +22,3 @@ Truncate the word-occurrence data.frame.
 truncNumWords(wordF = myWordOccurrenceDF, maxWords = 50)
 }
 }
-

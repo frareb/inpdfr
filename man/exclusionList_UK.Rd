@@ -15,4 +15,3 @@ exclusionList_UK
 A vector containing stop words in English.
 }
 \keyword{datasets}
-

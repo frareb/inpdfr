@@ -13,4 +13,3 @@ makeMainWindowsContent(main_window)
 This function is provided so that you can easily see its content. It is not
   intended to be used, prefer \code{loadGUI()} to load the \code{RGtk2} GUI.
 }
-

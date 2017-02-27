@@ -23,4 +23,3 @@ Exclude StopWords form the word occurrences data.frame. \code{excludeStopWords}
 excludeStopWords(wordF = myDF, lang = "French")
 }
 }
-

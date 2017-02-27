@@ -27,4 +27,3 @@ write(x = loremIpsum, file = "RESULTS/loremIpsum.txt")
 preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
 file.remove(list.files(pattern = "loremIpsum"))
 }
-

@@ -15,4 +15,3 @@ A list of vectors with stopwords for French, English, and Spanish languages.
 \examples{
 getStopWords()
 }
-

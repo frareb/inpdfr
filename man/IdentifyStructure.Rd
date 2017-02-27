@@ -28,4 +28,3 @@ Quasi structures, as well as 'random' and 'Gleasonian' structures,
   inferring a result from a non-significant test ('accepting the null'), 
   which is typically a bad idea.
 }
-

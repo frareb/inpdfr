@@ -16,4 +16,3 @@ exclusionList_FR
 A vector containing stop words in French.
 }
 \keyword{datasets}
-

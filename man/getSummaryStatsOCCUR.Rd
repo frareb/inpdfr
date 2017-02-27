@@ -29,4 +29,3 @@ Plot a scatter plot with the proportion of documents using similar words.
 getSummaryStatsOCCUR(wordF = myDF)
 }
 }
-

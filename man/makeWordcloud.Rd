@@ -39,4 +39,3 @@ Plot a word cloud from the word-occurrence data.frame using \code{\link[wordclou
 makeWordcloud(wordF = myDF)
 }
 }
-

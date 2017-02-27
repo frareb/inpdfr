@@ -46,4 +46,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALS
 file.remove(list.files(pattern = "loremIpsum"))
 doCA(wordF = wordOccuDF)
 }
-

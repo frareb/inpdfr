@@ -51,4 +51,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALS
 file.remove(list.files(pattern = "loremIpsum"))
 doKmeansClust(wordF = wordOccuDF, nbClust = 2)
 }
-

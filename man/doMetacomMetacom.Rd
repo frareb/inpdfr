@@ -33,11 +33,11 @@ Use the package \code{\link[metacom]{Metacommunity}} to analyse the word-occurre
 }
 \examples{
 data("loremIpsum")
-loremIpsum01 <- loremIpsum[1:100]
-loremIpsum02 <- loremIpsum[101:200]
-loremIpsum03 <- loremIpsum[201:300]
-loremIpsum04 <- loremIpsum[301:400]
-loremIpsum05 <- loremIpsum[401:500]
+loremIpsum01 <- loremIpsum[1:2]
+loremIpsum02 <- loremIpsum[3:4]
+loremIpsum03 <- loremIpsum[5:6]
+loremIpsum04 <- loremIpsum[7:8]
+loremIpsum05 <- loremIpsum[9:10]
 subDir <- "RESULTS"
 dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
@@ -50,4 +50,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
 file.remove(list.files(pattern = "loremIpsum"))
 doMetacomMetacom(wordF = wordOccuDF)
 }
-

@@ -57,4 +57,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
 file.remove(list.files(pattern = "loremIpsum"))
 doMetacomEntropart(wordF = wordOccuDF)
 }
-

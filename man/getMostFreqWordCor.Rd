@@ -51,4 +51,3 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
 file.remove(list.files(pattern = "loremIpsum"))
 getMostFreqWordCor(wordF = wordOccuDF, numWords = 5)
 }
-

@@ -16,4 +16,3 @@ exclusionList_SP
 A vector containing stop words in Spanish
 }
 \keyword{datasets}
-

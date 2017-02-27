@@ -15,4 +15,3 @@ functions to extract and process text into a word-occurrence data.frame,
 functions to analyse the word-occurrence data.frame with standard and ecological tools, and
 functions to use inpdfr through a Gtk2 Graphical User Interface.
 }
-

@@ -11,6 +11,9 @@
 getListFiles <- function(mywd){
   setwd(mywd)
   listFiles <- list.files(pattern = "\\.")
+  listFiles <- grep(listFiles, pattern = 'entropart', invert = TRUE, value = TRUE)
+  listFiles <- grep(listFiles, pattern = 'metacom', invert = TRUE, value = TRUE)
+  # exclude txt files which redults from entropart and metacom
   listFilesExt <- list(pdf = c(), txt = c())
   for(i in listFiles){
     myplitExt <- strsplit(i, split = "\\.")[[1]][2]

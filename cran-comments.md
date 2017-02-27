@@ -2,15 +2,14 @@
 
 ## Resubmission
 This is a resubmission. In this version I have:
-* included the identifyStructure function which was no longer 
-  part of the metacom package. 
+* fixed bug in doMetacomMetacom(wordF = wordOccuDF). 
 
-All modifications were commented into the NEWS.md file and package version updated to 0.1.4
+All modifications were commented into the NEWS.md file and package version updated to 0.1.5
 
 ## Test environments
 * Windows 10, R version 3.3.2
 * Linux Debian Jessie, R version 3.3.2
-* Windows, R-devel 2017-02-24 r72255
+* Windows, R-devel 2017-02-27 r72261
 
 ## R CMD check results
 There were no ERRORs,WARNINGs, or NOTEs with R 3.3.2 and 1 NOTE with R-devel:

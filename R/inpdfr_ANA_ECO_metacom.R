@@ -45,7 +45,7 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
   metacomDB[metacomDB >= 1] <- 1
   rownames(metacomDB) <- wordF[,1]
   metacomDB <- t(metacomDB)
-  metaCom <- metacom::Metacommunity(comm = metacomDB, sims = numSim, allowEmpty = TRUE)
+  metaCom <- suppressWarnings(metacom::Metacommunity(comm = metacomDB, sims = numSim, allowEmpty = TRUE))
 
   if(getPlot == TRUE){
     R.devices::devEval(type = formatType, name = "metacom_Metacommunity",

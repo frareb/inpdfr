@@ -9,13 +9,13 @@ All modifications were commented into the NEWS.md file and package version updat
 
 ## Test environments
 * Windows 10, R version 3.3.2
-* Linux XXX
+* Linux Debian Jessie, R version 3.3.2
 * Windows, R-devel 2017-02-24 r72255
 
 ## R CMD check results
-There were no ERRORs,WARNINGs, or NOTEs with R 3.2.5 and 1 NOTE with R-devel:
+There were no ERRORs,WARNINGs, or NOTEs with R 3.3.2 and 1 NOTE with R-devel:
 
-Cheking CRAN incoming feasibility ... NOTE
+checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
 
 * Maintainer: 'Rebaudo Francois <francois.rebaudo@ird.fr>'
 => ok

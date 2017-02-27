@@ -1,3 +1,6 @@
+## package inpdfr v0.1.5
+* fixed bug in doMetacomMetacom(wordF = wordOccuDF)
+
 ## package inpdfr v0.1.4
 * identifyStructure function included in the package
 

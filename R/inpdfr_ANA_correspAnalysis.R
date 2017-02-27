@@ -40,8 +40,10 @@ doCA <- function(wordF, getPlot = TRUE, mwidth = 800, mheight = 800, formatType 
     mergedDClean <- as.data.frame(cbind(as.character(wordF[,1]), mergedDClean))
     mergedDClean[,1] <- as.character(mergedDClean[,1])
     mergedDClean <- mergedDClean[which(rowSums(mergedDClean[,2:length(mergedDClean[1,])]) > freqWord),]
-    fitCa <- ca::ca(obj = as.matrix(mergedDClean[,2:length(mergedDClean[1,])], 
-      colnames = mergedDClean[,1]), nd = NA, ...)
+    fitCaMatrix <- as.matrix(mergedDClean[,2:length(mergedDClean[1,])]) #, colnames = mergedDClean[,1])
+    rownames(fitCaMatrix) <- mergedDClean[,1]
+    fitCa <- ca::ca(obj = fitCaMatrix, nd = NA, ...) 
+    
     if(getPlot == TRUE){
       R.devices::devEval(type = formatType, name = "CorAnalysis",
        aspectRatio = mheight / mwidth,

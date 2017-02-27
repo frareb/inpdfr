@@ -50,7 +50,9 @@ doMetacomEntropart <- function(wordF, getPlot = c(TRUE, TRUE, TRUE, TRUE),
   ## make entropart analysis
   metacomDB <- wordF
   names(metacomDB)[1] <- "Species"
-  metaCom <- entropart::MetaCommunity(Abundances = metacomDB[,2:length(wordF[1,])])
+  dfAbundances <- metacomDB[,2:length(wordF[1,])]
+  rownames(dfAbundances) <- as.character(metacomDB[,1])
+  metaCom <- entropart::MetaCommunity(Abundances = dfAbundances)
 
   if(getPlot[1] == TRUE){
     R.devices::devEval(type = formatType, name = "entropart_MetaCom",

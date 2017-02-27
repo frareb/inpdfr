@@ -14,11 +14,11 @@
 #' @return An object of class \code{\link[metacom]{Metacommunity}}.
 #' @examples
 #' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
+#' loremIpsum01 <- loremIpsum[1:2]
+#' loremIpsum02 <- loremIpsum[3:4]
+#' loremIpsum03 <- loremIpsum[5:6]
+#' loremIpsum04 <- loremIpsum[7:8]
+#' loremIpsum05 <- loremIpsum[9:10]
 #' subDir <- "RESULTS"
 #' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 #' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
@@ -45,7 +45,11 @@ doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
   metacomDB[metacomDB >= 1] <- 1
   rownames(metacomDB) <- wordF[,1]
   metacomDB <- t(metacomDB)
-  metaCom <- suppressWarnings(metacom::Metacommunity(comm = metacomDB, sims = numSim, allowEmpty = TRUE))
+  metaCom <- "Word occurrence matrix problem. See package metacom manual."
+  try(
+    metaCom <- suppressWarnings(metacom::Metacommunity(comm = metacomDB, sims = numSim, allowEmpty = TRUE)), 
+    silent = TRUE
+  )
 
   if(getPlot == TRUE){
     R.devices::devEval(type = formatType, name = "metacom_Metacommunity",

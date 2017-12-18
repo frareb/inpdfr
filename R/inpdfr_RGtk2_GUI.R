@@ -161,7 +161,7 @@ makeMenuMainWindow <- function(main_window){
     gtkAboutDialogSetUrlHook(activate_url)
     gtkShowAboutDialog(window,
                        program_name = "inpdfr GUI",
-                       version = "version beta 0.49",
+                       version = "version beta 0.50",
                        copyright = "Copyright (C) IRD / Fran\u00e7ois Rebaudo",
                        license = "GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007 (https://www.r-project.org/Licenses/GPL-3)",
                        website = "",
@@ -941,8 +941,8 @@ loadGUI <- function(){
   main_window <- gtkWindow("toplevel", show = FALSE)
   main_window["title"] <- "GUI for inpdfr package."
   main_window$setDefaultSize(300, 250)
-  ICONimage <- gdkPixbuf(filename = imagefile("gtk-logo-rgb.gif"))[[1]]
-  main_window$set(icon = ICONimage)
+  # ICONimage <- gdkPixbuf(filename = imagefile("gtk-logo-rgb.gif"))[[1]]
+  main_window$set() #icon = ICONimage
   askQuit(main_window)
   vbox <- makeMenuMainWindow(main_window)
   vboxContent <- suppressWarnings(makeMainWindowsContent(main_window))

@@ -1,1 +1,1 @@
-.onAttach<-function(libname,pkgname){packageStartupMessage("inpdfr needs XPDF in order to run (http://www.foolabs.com/xpdf/download.html)")}
+.onAttach<-function(libname,pkgname){packageStartupMessage("inpdfr uses XPDF to extract text from PDF (http://www.foolabs.com/xpdf/download.html)")}

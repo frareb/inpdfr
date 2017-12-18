@@ -1,5 +1,8 @@
+## package inpdfr v0.1.6
+* fix WARN "working directory change"
+
 ## package inpdfr v0.1.5
-* fixed bug in doMetacomMetacom(wordF = wordOccuDF)
+* fix bug in doMetacomMetacom(wordF = wordOccuDF)
 
 ## package inpdfr v0.1.4
 * identifyStructure function included in the package

@@ -29,6 +29,7 @@ A set of analyses available from the \code{inpdfr} package.
 A quick way to compute a set of analysis from the word-occurrence data.frame.
 }
 \examples{
+\dontrun{
 data("loremIpsum")
 loremIpsum01 <- loremIpsum[1:100]
 loremIpsum02 <- loremIpsum[101:200]
@@ -44,6 +45,8 @@ write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
 write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
   excludeSW = FALSE)
-file.remove(list.files(pattern = "loremIpsum"))
+file.remove(list.files(full.names = TRUE, 
+  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 getAllAnalysis(dataset = wordOccuDF, wcloud = FALSE, sumStats = FALSE)
+}
 }

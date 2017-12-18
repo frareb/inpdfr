@@ -30,6 +30,8 @@ subDir <- "RESULTS"
 dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 write(x = loremIpsum, file = "RESULTS/loremIpsum.txt")
 preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
-postProcTxt(txt = preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt")))
-file.remove(list.files(pattern = "loremIpsum"))
+postProcTxt(txt = 
+  preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt")))
+file.remove(list.files(full.names = TRUE, 
+  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 }

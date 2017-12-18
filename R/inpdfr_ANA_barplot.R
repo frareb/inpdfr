@@ -24,7 +24,8 @@
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' getSummaryStatsBARPLOT(wordF = wordOccuDF)
 #' @export
 getSummaryStatsBARPLOT <- function(wordF, getPlot = TRUE, mwidth = 480, 

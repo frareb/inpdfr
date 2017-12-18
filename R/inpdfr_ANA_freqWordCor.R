@@ -25,7 +25,8 @@
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' getMostFreqWord(wordF = wordOccuDF, numWords = 5)
 #' @export
 getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mheight = 800, 
@@ -95,7 +96,8 @@ getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mhei
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' getMostFreqWordCor(wordF = wordOccuDF, numWords = 5)
 #' @export
 getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getTextSink = TRUE,
@@ -205,7 +207,8 @@ getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getText
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' getXFreqWord(wordF = wordOccuDF, occuWords = 5)
 #' @export
 getXFreqWord <- function(wordF, occuWords){

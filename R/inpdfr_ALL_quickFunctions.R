@@ -20,14 +20,15 @@
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' @export
 getwordOccuDF <- function(mywd, language = "English", excludeSW = TRUE){
   listFilesExt <- getListFiles(mywd)
   if (length(listFilesExt$pdf) > 0){
-    wordFreqPDF <- getPDF(myPDFs = listFilesExt$pdf)
+    wordFreqPDF <- getPDF(myPDFs = paste0(mywd, "/", listFilesExt$pdf))
   } else {wordFreqPDF <- NULL}
-  wordFreqTXT <- getTXT(myTXTs = listFilesExt$txt)
+  wordFreqTXT <- getTXT(myTXTs = paste0(mywd, "/", listFilesExt$txt))
   wordFreq <- append(wordFreqPDF, wordFreqTXT)
   if (excludeSW == TRUE){
     wordFreq <- excludeStopWords(wordF = wordFreq, lang = language)
@@ -48,6 +49,7 @@ getwordOccuDF <- function(mywd, language = "English", excludeSW = TRUE){
 #' @param metacom A logical to for metacommunity analysis.
 #' @return A set of analyses available from the \code{inpdfr} package.
 #' @examples
+#' \dontrun{
 #' data("loremIpsum")
 #' loremIpsum01 <- loremIpsum[1:100]
 #' loremIpsum02 <- loremIpsum[101:200]
@@ -63,8 +65,10 @@ getwordOccuDF <- function(mywd, language = "English", excludeSW = TRUE){
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' getAllAnalysis(dataset = wordOccuDF, wcloud = FALSE, sumStats = FALSE)
+#' }
 #' @export
 getAllAnalysis <- function(dataset, wcloud = TRUE, sumStats = TRUE, freqW = TRUE,
   corA = TRUE, clust = TRUE, metacom = TRUE){

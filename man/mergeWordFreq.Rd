@@ -32,5 +32,6 @@ write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 wordOccuFreq <- getTXT(myTXTs = list.files(path = paste0(getwd(), 
   "/RESULTS/"), pattern = "loremIpsum", full.names = TRUE))
 wordOccuDF <- mergeWordFreq(wordF = wordOccuFreq)
-file.remove(list.files(pattern = "loremIpsum"))
+file.remove(list.files(full.names = TRUE, 
+  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 }

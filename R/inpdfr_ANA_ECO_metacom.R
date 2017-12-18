@@ -28,7 +28,8 @@
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
 #'   excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' doMetacomMetacom(wordF = wordOccuDF)
 #' @export
 doMetacomMetacom <- function(wordF, numSim = 10, limit = "Inf", getPlot = TRUE, 

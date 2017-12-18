@@ -26,7 +26,8 @@
 #' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' doCA(wordF = wordOccuDF)
 #' @export
 doCA <- function(wordF, getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png", ...){

@@ -29,7 +29,8 @@
 #' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' doCluster(wordF = wordOccuDF, myMethod = "ward.D2")
 #' @export
 doCluster <- function(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5, getPlot = TRUE, mwidth = 800,
@@ -105,7 +106,8 @@ doCluster <- function(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5, getPlot
 #' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
 #' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 #' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALSE)
-#' file.remove(list.files(pattern = "loremIpsum"))
+#' file.remove(list.files(full.names = TRUE, 
+#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 #' doKmeansClust(wordF = wordOccuDF, nbClust = 2)
 #' @export
 doKmeansClust <- function(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong", getPlot = TRUE,

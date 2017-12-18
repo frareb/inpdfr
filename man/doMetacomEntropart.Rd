@@ -39,21 +39,20 @@ Uses the \code{\link[entropart]{entropart-package}} to analyse the word-occurren
    considering words as species and documents as communities.
 }
 \examples{
+\dontrun{
 data("loremIpsum")
-loremIpsum01 <- loremIpsum[1:100]
-loremIpsum02 <- loremIpsum[101:200]
-loremIpsum03 <- loremIpsum[201:300]
-loremIpsum04 <- loremIpsum[301:400]
-loremIpsum05 <- loremIpsum[401:500]
+loremIpsum01 <- loremIpsum[1:10]
+loremIpsum02 <- loremIpsum[11:20]
+loremIpsum03 <- loremIpsum[21:30]
 subDir <- "RESULTS"
 dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
 write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
 write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
 write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
 wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
   excludeSW = FALSE)
-file.remove(list.files(pattern = "loremIpsum"))
+file.remove(list.files(full.names = TRUE, 
+  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
 doMetacomEntropart(wordF = wordOccuDF)
+}
 }

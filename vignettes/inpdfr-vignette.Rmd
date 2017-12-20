@@ -351,7 +351,7 @@ All theses tasks can be performed with the `getAllAnalysis` function which takes
     getAllAnalysis(dataset = mergedD)
 
 ## 2. Using inpdfr from the Graphical User Interface (GUI)
-To load the RGtk2 GUI, use the function `loadGUI`:
+To load the RGtk2 GUI, use the function `loadGUI` available only in the gitHub webpage (https://github.com/frareb/inpdfr):
 
     loadGUI()
 

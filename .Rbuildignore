@@ -1,5 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-cran-comments.md
+cran-comments\.md
 JSS_analysis/
-R/inpdfr_RGtk2_GUI.R
+R/inpdfr_RGtk2_GUI\.R

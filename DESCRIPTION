@@ -5,9 +5,8 @@ Version: 0.1.6
 Author: Rebaudo Francois (IRD, UMR EGCE, Univ.ParisSud-CNRS-IRD-
     Univ.ParisSaclay)
 Maintainer: Rebaudo Francois <francois.rebaudo@ird.fr>
-Description: A set of functions and a graphical user interface
-	to analyse and compare texts, using classical text mining
-	functions, as well as those from theoretical ecology.
+Description: A set of functions to analyse and compare texts, using classical 
+  text mining	functions, as well as those from theoretical ecology.
 License: GPL-2
 LazyData: TRUE
 Imports:

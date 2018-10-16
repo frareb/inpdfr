@@ -1,7 +1,7 @@
 Package: inpdfr
 Type: Package
 Title: Analyse Text Documents Using Ecological Tools
-Version: 0.1.7
+Version: 0.1.8.9000
 Author: Rebaudo Francois (IRD, UMR EGCE, Univ.ParisSud-CNRS-IRD-
     Univ.ParisSaclay)
 Maintainer: Rebaudo Francois <francois.rebaudo@ird.fr>

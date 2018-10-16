@@ -2,15 +2,12 @@
 
 ## Resubmission
 This is a bug-fix release. In this version I have:
-* fix WARN "working directory change"
-* GUI using RGtk2 no longer part of the package (ERRORs on RGtk2 results)
-
-All modifications were commented into the NEWS.md file and package version updated to 0.1.6
+* fixed calling if() with a vector of length 2 or more, according to email by ripley@stats.ox.ac.uk
 
 ## Test environments
-* Windows 10, R version 3.4.3
-* Linux Ubuntu 17.10, R version 3.4.3
-* Windows, R-devel 2017-09-12 r73242
+* Windows 10, R version 3.5.1
+* Linux Ubuntu 18.04, R version 3.5.1
+* Windows, R-devel 2018-10-12 r75434
 
 ## R CMD check results
 There were no ERRORs,WARNINGs, or NOTEs

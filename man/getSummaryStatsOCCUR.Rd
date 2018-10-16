@@ -4,8 +4,8 @@
 \alias{getSummaryStatsOCCUR}
 \title{Plot a scatter plot with the proportion of documents using similar words.}
 \usage{
-getSummaryStatsOCCUR(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
-  formatType = "png")
+getSummaryStatsOCCUR(wordF, getPlot = TRUE, mwidth = 800,
+  mheight = 800, formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

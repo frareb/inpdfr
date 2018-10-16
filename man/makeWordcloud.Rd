@@ -4,10 +4,10 @@
 \alias{makeWordcloud}
 \title{Word cloud based on the word-occurrence data.frame.}
 \usage{
-makeWordcloud(wordF, wcFormat = "png", wcminFreq = 3, wcmaxWords = Inf,
-  wcRandOrder = FALSE, wcCol = RColorBrewer::brewer.pal(8, "Dark2"),
-  getPlot = c(TRUE, TRUE), mwidth = 1000, mheight = 1000,
-  formatType = "png")
+makeWordcloud(wordF, wcFormat = "png", wcminFreq = 3,
+  wcmaxWords = Inf, wcRandOrder = FALSE,
+  wcCol = RColorBrewer::brewer.pal(8, "Dark2"), getPlot = c(TRUE,
+  TRUE), mwidth = 1000, mheight = 1000, formatType = "png")
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

@@ -20,7 +20,9 @@ Identifies structure (or quasi-structure) and outputs a classification.
 \details{
 Tad Dallas <tdallas@uga.edu> identifyStructure function no longer 
   maintained in metacom package. see https://github.com/taddallas/metacom. 
-  This function was copy-pasted from version 1.4.4 of package metacom.
+  This function was copy-pasted from version 1.4.4 of package metacom with 
+  minor modification (fix warning: the condition has length > 1 and only the 
+  first element will be used).
 }
 \note{
 Quasi structures, as well as 'random' and 'Gleasonian' structures, 

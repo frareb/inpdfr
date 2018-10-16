@@ -4,8 +4,9 @@
 \alias{doKmeansClust}
 \title{Performs a k-means cluster analysis on the basis of the word-occurrence data.frame.}
 \usage{
-doKmeansClust(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong",
-  getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png", ...)
+doKmeansClust(wordF, nbClust = 4, nbIter = 10,
+  algo = "Hartigan-Wong", getPlot = TRUE, mwidth = 800,
+  mheight = 800, formatType = "png", ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

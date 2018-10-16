@@ -5,7 +5,8 @@
 \title{Performs a cluster analysis on the basis of the word-occurrence data.frame.}
 \usage{
 doCluster(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5,
-  getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png", ...)
+  getPlot = TRUE, mwidth = 800, mheight = 800, formatType = "png",
+  ...)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

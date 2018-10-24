@@ -19,7 +19,7 @@
 IdentifyStructure=function(metacom.obj) {
   #Coherence
   if(as.numeric(t(metacom.obj$Coherence)[,3][1]) >= 0.05) "Random" else
-    if(as.numeric(t(metacom.obj$Coherence)[,1][1]) < as.numeric(t(metacom.obj$Coherence)[,4]) &
+    if(as.numeric(t(metacom.obj$Coherence)[,1][1]) < as.numeric(t(metacom.obj$Coherence)[,4][1]) &
        as.numeric(t(metacom.obj$Coherence)[,3][1]) < 0.05) "Checkerboard (negative coherence)" else
          if(as.numeric(t(metacom.obj$Coherence)[,1][1]) >= as.numeric(t(metacom.obj$Coherence)[,4][1]) &
             as.numeric(t(metacom.obj$Coherence)[,3][1]) < 0.05) {
@@ -60,7 +60,7 @@ IdentifyStructure=function(metacom.obj) {
                                                            metacom.obj$Boundary[,1][1] >=0 & metacom.obj$Boundary[,2][1] < 0.05) "Quasi-nested (clumped)" else
                                                              if(as.numeric(t(metacom.obj$Turnover)[,1][1]) < as.numeric(t(metacom.obj$Turnover)[,4][1]) &
                                                                 as.numeric(t(metacom.obj$Turnover)[,3][1]) > 0.05 &
-                                                                metacom.obj$Boundary[,1] < 0 & metacom.obj$Boundary[,2][1] >= 0.05) "Quasi-nested (random)" else
+                                                                metacom.obj$Boundary[,1][1] < 0 & metacom.obj$Boundary[,2][1] >= 0.05) "Quasi-nested (random)" else
                                                                   if(as.numeric(t(metacom.obj$Turnover)[,1][1]) < as.numeric(t(metacom.obj$Turnover)[,4][1]) &
                                                                      as.numeric(t(metacom.obj$Turnover)[,3][1]) > 0.05 &
                                                                      metacom.obj$Boundary[,1][1] < 0 & metacom.obj$Boundary[,2][1] < 0.05) "Quasi-nested (hyperdispersed)" } }

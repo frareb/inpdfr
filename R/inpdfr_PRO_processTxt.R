@@ -15,7 +15,8 @@
 #' @export
 preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
   zz <- file(filetxt, 'r', encoding = encodingIn)
-  txt <- readChar(zz, file.info(filetxt)$size)
+  # txt <- readChar(zz, file.info(filetxt)$size)
+  txt <- paste(readLines(filetxt), collapse = " ")
   close(zz)
   Encoding(txt) <- encodingOut
   txt <- strsplit(txt, split = "\\.")[[1]]

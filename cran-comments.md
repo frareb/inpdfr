@@ -2,6 +2,8 @@
 
 ## Resubmission
 This is a error-fix release. In this version I have:
+* used VCorpus instead of Corpus
+* readLines instead of readChar
 * fixed running examples in 'inpdfr-Ex.R'
 
 ## Test environments

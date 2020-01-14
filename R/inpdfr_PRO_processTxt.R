@@ -57,7 +57,7 @@ postProcTxt <- function(txt, minword = 1, maxword = 20, minFreqWord = 1){
   txtMerged <- gsub("[[:punct:]]", " ", txtMerged) # remove punctuation with gsub
   txtMerged <- gsub("[^[:alnum:]]", " ", txtMerged) # remove all non-alphanumeric characters
 
-  corpus <- tm::Corpus(tm::VectorSource(txtMerged))
+  corpus <- tm::VCorpus(tm::VectorSource(txtMerged))
   corpus <- tm::tm_map(corpus, tm::removePunctuation) # remove punctuation with removePunctuation from package tm
   tdm <- tm::TermDocumentMatrix(corpus)
   m <- as.matrix(tdm)

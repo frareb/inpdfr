@@ -1,7 +1,7 @@
 ## package inpdfr v0.1.9
 * used VCorpus instead of Corpus
 * readLines instead of readChar
-* fixed running examples in 'inpdfr-Ex.R'
+* NOT fixed running examples in 'doCA' (Running examples failed)
 
 ## package inpdfr v0.1.8
 * fix calling if() with a vector of length 2 or more

@@ -4,9 +4,16 @@
 \alias{doMetacomMetacom}
 \title{Performs a metacomunity analysis.}
 \usage{
-doMetacomMetacom(wordF, numSim = 10, limit = "Inf", getPlot = TRUE,
-  getTextSink = TRUE, mwidth = 800, mheight = 800,
-  formatType = "png")
+doMetacomMetacom(
+  wordF,
+  numSim = 10,
+  limit = "Inf",
+  getPlot = TRUE,
+  getTextSink = TRUE,
+  mwidth = 800,
+  mheight = 800,
+  formatType = "png"
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

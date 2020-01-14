@@ -4,9 +4,14 @@
 \alias{doMetacomEntropart}
 \title{Performs an analysis of ecological diversity and structure.}
 \usage{
-doMetacomEntropart(wordF, getPlot = c(TRUE, TRUE, TRUE, TRUE),
-  getTextSink = c(TRUE, TRUE, TRUE, TRUE), mwidth = 800,
-  mheight = 800, formatType = "png")
+doMetacomEntropart(
+  wordF,
+  getPlot = c(TRUE, TRUE, TRUE, TRUE),
+  getTextSink = c(TRUE, TRUE, TRUE, TRUE),
+  mwidth = 800,
+  mheight = 800,
+  formatType = "png"
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

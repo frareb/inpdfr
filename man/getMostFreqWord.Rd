@@ -4,8 +4,14 @@
 \alias{getMostFreqWord}
 \title{Returns most frequent words.}
 \usage{
-getMostFreqWord(wordF, numWords, getPlot = TRUE, mwidth = 1024,
-  mheight = 800, formatType = "png")
+getMostFreqWord(
+  wordF,
+  numWords,
+  getPlot = TRUE,
+  mwidth = 1024,
+  mheight = 800,
+  formatType = "png"
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

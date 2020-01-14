@@ -4,9 +4,15 @@
 \alias{getMostFreqWordCor}
 \title{Test for correlation between the most frequent words.}
 \usage{
-getMostFreqWordCor(wordF, numWords, getPlot = c(TRUE, TRUE),
-  getTextSink = TRUE, mwidth = 1024, mheight = 1024,
-  formatType = "png")
+getMostFreqWordCor(
+  wordF,
+  numWords,
+  getPlot = c(TRUE, TRUE),
+  getTextSink = TRUE,
+  mwidth = 1024,
+  mheight = 1024,
+  formatType = "png"
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

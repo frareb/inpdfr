@@ -4,8 +4,14 @@
 \alias{getSummaryStatsBARPLOT}
 \title{Perform a barplot with the number of unique words per document}
 \usage{
-getSummaryStatsBARPLOT(wordF, getPlot = TRUE, mwidth = 480,
-  mheight = 480, formatType = "png", ...)
+getSummaryStatsBARPLOT(
+  wordF,
+  getPlot = TRUE,
+  mwidth = 480,
+  mheight = 480,
+  formatType = "png",
+  ...
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

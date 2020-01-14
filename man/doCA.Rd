@@ -4,8 +4,14 @@
 \alias{doCA}
 \title{Performs a correspondance analysis on the basis of the word-occurrence data.frame.}
 \usage{
-doCA(wordF, getPlot = TRUE, mwidth = 800, mheight = 800,
-  formatType = "png", ...)
+doCA(
+  wordF,
+  getPlot = TRUE,
+  mwidth = 800,
+  mheight = 800,
+  formatType = "png",
+  ...
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

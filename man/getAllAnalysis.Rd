@@ -4,8 +4,15 @@
 \alias{getAllAnalysis}
 \title{A quick way to compute a set of analysis from the word-occurrence data.frame.}
 \usage{
-getAllAnalysis(dataset, wcloud = TRUE, sumStats = TRUE, freqW = TRUE,
-  corA = TRUE, clust = TRUE, metacom = TRUE)
+getAllAnalysis(
+  dataset,
+  wcloud = TRUE,
+  sumStats = TRUE,
+  freqW = TRUE,
+  corA = TRUE,
+  clust = TRUE,
+  metacom = TRUE
+)
 }
 \arguments{
 \item{dataset}{A single word-occurrrence data.frame.}

@@ -4,8 +4,13 @@
 \alias{getSummaryStatsHISTO}
 \title{Plot an histogram with the number of words excluding stop words}
 \usage{
-getSummaryStatsHISTO(wordF, mwidth = 800, mheight = 800,
-  formatType = "png", ...)
+getSummaryStatsHISTO(
+  wordF,
+  mwidth = 800,
+  mheight = 800,
+  formatType = "png",
+  ...
+)
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}

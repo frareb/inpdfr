@@ -4,8 +4,13 @@
 \alias{getPDF}
 \title{Extract text from PDF files and return a word-occurrence data.frame.}
 \usage{
-getPDF(myPDFs, minword = 1, maxword = 20, minFreqWord = 1,
-  pathToPdftotext = "")
+getPDF(
+  myPDFs,
+  minword = 1,
+  maxword = 20,
+  minFreqWord = 1,
+  pathToPdftotext = ""
+)
 }
 \arguments{
 \item{myPDFs}{A character vector containing PDF file names.}

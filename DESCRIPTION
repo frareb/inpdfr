@@ -1,7 +1,7 @@
 Package: inpdfr
 Type: Package
 Title: Analyse Text Documents Using Ecological Tools
-Version: 0.1.8
+Version: 0.1.9
 Author: Rebaudo Francois (IRD, UMR EGCE, Univ.ParisSud-CNRS-IRD-
     Univ.ParisSaclay)
 Maintainer: Rebaudo Francois <francois.rebaudo@ird.fr>
@@ -27,6 +27,6 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 7.0.2
 URL: https://github.com/frareb/inpdfr/
 BugReports: https://github.com/frareb/inpdfr/issues

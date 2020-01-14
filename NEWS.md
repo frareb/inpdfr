@@ -1,3 +1,6 @@
+## package inpdfr v0.1.9
+* fix Running examples in 'inpdfr-Ex.R'
+
 ## package inpdfr v0.1.8
 * fix calling if() with a vector of length 2 or more
 

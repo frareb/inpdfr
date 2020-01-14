@@ -10,7 +10,7 @@ This is a error-fix release. In this version I have:
 * Windows 10, R version 3.6.2
 * Linux Xubuntu 19.10, R version 3.6.1
 * Windows, R-devel 2020-01-07 r77633
-* TRAVIS
+* TRAVIS with oldrel, release, and devel
 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs

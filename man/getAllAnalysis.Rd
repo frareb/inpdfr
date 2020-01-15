@@ -9,7 +9,6 @@ getAllAnalysis(
   wcloud = TRUE,
   sumStats = TRUE,
   freqW = TRUE,
-  corA = TRUE,
   clust = TRUE,
   metacom = TRUE
 )
@@ -22,8 +21,6 @@ getAllAnalysis(
 \item{sumStats}{A logical to for summary statistics analysis.}
 
 \item{freqW}{A logical to for word frequency analysis.}
-
-\item{corA}{A logical to for correspondence analysis.}
 
 \item{clust}{A logical to for cluster analysis.}
 

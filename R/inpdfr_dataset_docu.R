@@ -5,7 +5,7 @@
 #' @format A vector with 173 elements (character), with UTF-8 characters escaped
 #'   using \code{stringi::stri_escape_unicode(exclusionList_FR)}.
 #'
-#' @source Adapted from \url{http://www.ranks.nl/stopwords/french}.
+#' @source Adapted from www.ranks.nl/stopwords.
 "exclusionList_FR"
 
 #' Stop words in Spanish.
@@ -15,7 +15,7 @@
 #' @format A vector with 190 elements (character), with UTF-8 characters escaped
 #'   using \code{stringi::stri_escape_unicode(exclusionList_SP)}.
 #'
-#' @source Adapted from \url{http://www.ranks.nl/stopwords/spanish}.
+#' @source Adapted from www.ranks.nl/stopwords.
 "exclusionList_SP"
 
 #' Stop words in English.
@@ -24,7 +24,7 @@
 #'
 #' @format A vector with 542 elements (character).
 #'
-#' @source Adapted from \url{http://www.ranks.nl/stopwords}.
+#' @source Adapted from www.ranks.nl/stopwords.
 "exclusionList_UK"
 
 #' Lorem Ipsum text.
@@ -35,3 +35,11 @@
 #'
 #' @source \url{http://lipsum.com/}.
 "loremIpsum"
+
+
+#' Lorem Ipsum word occurrences.
+#'
+#' @format A data.frame containing word name and occurences for testing purposes.
+"wordOccuDF"
+
+

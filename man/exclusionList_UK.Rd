@@ -6,7 +6,7 @@
 \title{Stop words in English.}
 \format{A vector with 542 elements (character).}
 \source{
-Adapted from \url{http://www.ranks.nl/stopwords}.
+Adapted from www.ranks.nl/stopwords.
 }
 \usage{
 exclusionList_UK

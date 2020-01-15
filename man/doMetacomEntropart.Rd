@@ -45,19 +45,7 @@ Uses the \code{\link[entropart]{entropart-package}} to analyse the word-occurren
 }
 \examples{
 \dontrun{
-data("loremIpsum")
-loremIpsum01 <- loremIpsum[1:10]
-loremIpsum02 <- loremIpsum[11:20]
-loremIpsum03 <- loremIpsum[21:30]
-subDir <- "RESULTS"
-dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
-  excludeSW = FALSE)
-file.remove(list.files(full.names = TRUE, 
-  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+data("wordOccuDF")
 doMetacomEntropart(wordF = wordOccuDF)
 }
 }

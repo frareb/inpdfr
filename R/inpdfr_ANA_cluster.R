@@ -15,29 +15,16 @@
 #' @param ... Additional arguments from the \code{\link[stats]{hclust}} function.
 #' @return An object of class \code{\link[stats]{hclust}}.
 #' @examples
-#' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
-#' subDir <- "RESULTS"
-#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-#' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-#' write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-#' write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-#' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-#' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-#' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALSE)
-#' file.remove(list.files(full.names = TRUE, 
-#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
-#' doCluster(wordF = wordOccuDF, myMethod = "ward.D2")
+#' data("wordOccuDF")
+#' doCluster(wordF = wordOccuDF, myMethod = "ward.D2", getPlot = FALSE)
 #' @export
 doCluster <- function(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5, getPlot = TRUE, mwidth = 800,
   mheight = 800, formatType = "png", ...){
   ## create RESULTS folder
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  if(getPlot == TRUE){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   ## make cluster analysis
   if(ncol(wordF) > 3){
     fitClust <-  stats::hclust(stats::dist(t(as.matrix(wordF[,2:length(wordF[1,])]))),
@@ -92,34 +79,22 @@ doCluster <- function(wordF, myMethod = "ward.D2", gp = FALSE, nbGp = 5, getPlot
 #' @param ... Additional arguments from the \code{\link[stats]{kmeans}} function.
 #' @return An object of class kmeans (see \code{\link[stats]{kmeans}}).
 #' @examples
-#' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
-#' subDir <- "RESULTS"
-#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-#' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-#' write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-#' write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-#' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-#' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-#' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), excludeSW = FALSE)
-#' file.remove(list.files(full.names = TRUE, 
-#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
-#' doKmeansClust(wordF = wordOccuDF, nbClust = 2)
+#' data("wordOccuDF")
+#' doKmeansClust(wordF = wordOccuDF, nbClust = 2, getPlot = FALSE)
 #' @export
 doKmeansClust <- function(wordF, nbClust = 4, nbIter = 10, algo = "Hartigan-Wong", getPlot = TRUE,
   mwidth = 800, mheight = 800, formatType = "png", ...){
   ## create RESULTS folder
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  if(getPlot == TRUE){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   ## make kmeans-cluster analysis
-  if(ncol(wordF)>3){
+  if(ncol(wordF) > 3){
     dd <-(stats::dist(t(as.matrix(wordF[,2:length(wordF[1,])])), method="euclidian"))# ,colnames=fileNames
-    kfit <- stats::kmeans(x=dd, centers=nbClust, iter.max=nbIter, algorithm=algo,...)
-    if(getPlot==TRUE){
+    kfit <- stats::kmeans(x = dd, centers = nbClust, 
+            iter.max = nbIter, algorithm = algo, ...)
+    if(getPlot == TRUE){
       R.devices::devEval(type = formatType, name = "KMEANCLUST",
         aspectRatio = mheight / mwidth,
         scale = do.call(function(){if((mheight / mwidth) <= 1) {

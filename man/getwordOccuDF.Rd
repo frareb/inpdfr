@@ -20,6 +20,7 @@ A single word-occurrrence data.frame.
 A quick way to obtain the word-occurrence data.frame from a set of documents.
 }
 \examples{
+\dontrun{
 data("loremIpsum")
 loremIpsum01 <- loremIpsum[1:100]
 loremIpsum02 <- loremIpsum[101:200]
@@ -37,4 +38,5 @@ wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"),
   excludeSW = FALSE)
 file.remove(list.files(full.names = TRUE, 
   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+}
 }

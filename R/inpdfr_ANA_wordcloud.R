@@ -22,10 +22,10 @@
 makeWordcloud <- function(wordF, wcFormat = "png", wcminFreq = 3, wcmaxWords = Inf,
   wcRandOrder = FALSE, wcCol = RColorBrewer::brewer.pal(8, "Dark2"),
   getPlot = c(TRUE, TRUE), mwidth = 1000, mheight = 1000, formatType = "png"){
-
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-
+  if(sum(getPlot) > 0){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   lapply(2:length(wordF), function(i){
     if (wcFormat == "png" && getPlot[1] == TRUE){
       R.devices::devEval(type = formatType, name = paste0("WORDCLOUD_",names(wordF)[i]),

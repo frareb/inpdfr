@@ -6,6 +6,7 @@
 \usage{
 getSummaryStatsHISTO(
   wordF,
+  getPlot = TRUE,
   mwidth = 800,
   mheight = 800,
   formatType = "png",
@@ -14,6 +15,8 @@ getSummaryStatsHISTO(
 }
 \arguments{
 \item{wordF}{The data.frame containing word occurrences.}
+
+\item{getPlot}{If \code{TRUE}, save the plot in the RESULTS directory.}
 
 \item{mwidth}{The width of the plot in pixels.}
 
@@ -27,22 +30,6 @@ getSummaryStatsHISTO(
 Plot a histogram with the number of words excluding stop words using \code{\link[graphics]{hist}} function.
 }
 \examples{
-data("loremIpsum")
-loremIpsum01 <- loremIpsum[1:100]
-loremIpsum02 <- loremIpsum[101:200]
-loremIpsum03 <- loremIpsum[201:300]
-loremIpsum04 <- loremIpsum[301:400]
-loremIpsum05 <- loremIpsum[401:500]
-subDir <- "RESULTS"
-dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
-  excludeSW = FALSE)
-file.remove(list.files(full.names = TRUE, 
-  path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
-getSummaryStatsHISTO(wordF = wordOccuDF)
+data("wordOccuDF")
+getSummaryStatsHISTO(wordF = wordOccuDF, getPlot = FALSE)
 }

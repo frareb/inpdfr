@@ -7,7 +7,7 @@
 \format{A vector with 190 elements (character), with UTF-8 characters escaped
   using \code{stringi::stri_escape_unicode(exclusionList_SP)}.}
 \source{
-Adapted from \url{http://www.ranks.nl/stopwords/spanish}.
+Adapted from www.ranks.nl/stopwords.
 }
 \usage{
 exclusionList_SP

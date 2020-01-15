@@ -10,31 +10,15 @@
 #' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @return The \code{numWords} most frequent words.
 #' @examples
-#' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
-#' subDir <- "RESULTS"
-#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-#' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-#' write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-#' write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-#' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-#' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-#' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
-#'   excludeSW = FALSE)
-#' file.remove(list.files(full.names = TRUE, 
-#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
-#' getMostFreqWord(wordF = wordOccuDF, numWords = 5)
+#' data("wordOccuDF")
+#' getMostFreqWord(wordF = wordOccuDF, numWords = 5, getPlot = FALSE)
 #' @export
 getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mheight = 800, 
   formatType = "png"){
-
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-
+  if(getPlot == TRUE){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   mostFreqWords <- NULL
   if(is.numeric(numWords)){
     if(numWords > nrow(wordF)){numWords <- nrow(wordF)}
@@ -81,31 +65,19 @@ getMostFreqWord <- function(wordF, numWords, getPlot = TRUE, mwidth = 1024, mhei
 #' @param formatType The format for the output file ("eps", "pdf", "png", "svg", "tiff", "jpeg", "bmp").
 #' @return A list with the correlation matrix and the p-value matrix.
 #' @examples
-#' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
-#' subDir <- "RESULTS"
-#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-#' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-#' write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-#' write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-#' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-#' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-#' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
-#'   excludeSW = FALSE)
-#' file.remove(list.files(full.names = TRUE, 
-#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
-#' getMostFreqWordCor(wordF = wordOccuDF, numWords = 5)
+#' data("wordOccuDF")
+#' getMostFreqWordCor(
+#'   wordF = wordOccuDF, 
+#'   numWords = 5, 
+#'   getPlot = c(FALSE, FALSE), 
+#'   getTextSink = FALSE)
 #' @export
 getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getTextSink = TRUE,
   mwidth = 1024, mheight = 1024, formatType = "png"){ # correlation between words
-
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-
+  if(sum(getPlot) > 0 | getTextSink == TRUE){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   if(numWords > nrow(wordF)){numWords <- nrow(wordF)}
   M <- wordF[,2:ncol(wordF)]
   matCOR <- matrix(NA, ncol = numWords, nrow = numWords)
@@ -192,23 +164,7 @@ getMostFreqWordCor <- function(wordF, numWords, getPlot = c(TRUE, TRUE), getText
 #' @param occuWords The minimum number of occurrences for words to be returned.
 #' @return A vector with most frequent words.
 #' @examples
-#' data("loremIpsum")
-#' loremIpsum01 <- loremIpsum[1:100]
-#' loremIpsum02 <- loremIpsum[101:200]
-#' loremIpsum03 <- loremIpsum[201:300]
-#' loremIpsum04 <- loremIpsum[301:400]
-#' loremIpsum05 <- loremIpsum[401:500]
-#' subDir <- "RESULTS"
-#' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-#' write(x = loremIpsum01, file = "RESULTS/loremIpsum01.txt")
-#' write(x = loremIpsum02, file = "RESULTS/loremIpsum02.txt")
-#' write(x = loremIpsum03, file = "RESULTS/loremIpsum03.txt")
-#' write(x = loremIpsum04, file = "RESULTS/loremIpsum04.txt")
-#' write(x = loremIpsum05, file = "RESULTS/loremIpsum05.txt")
-#' wordOccuDF <- getwordOccuDF(mywd = paste0(getwd(), "/RESULTS"), 
-#'   excludeSW = FALSE)
-#' file.remove(list.files(full.names = TRUE, 
-#'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+#' data("wordOccuDF")
 #' getXFreqWord(wordF = wordOccuDF, occuWords = 5)
 #' @export
 getXFreqWord <- function(wordF, occuWords){

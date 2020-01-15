@@ -13,10 +13,10 @@
 #' @export
 getSummaryStatsOCCUR <- function(wordF, getPlot = TRUE, mwidth = 800, mheight = 800, 
   formatType = "png"){
-
-  subDir <- "RESULTS"
-  dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
-
+  if(getPlot == TRUE){
+    subDir <- "RESULTS"
+    dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
+  }
   ncores <- parallel::detectCores()
   if(nrow(wordF) < ncores){ncores <- nrow(wordF)}
   cl<-parallel::makeCluster(ncores)

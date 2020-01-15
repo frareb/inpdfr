@@ -1,3 +1,8 @@
+## package inpdfr v0.1.10
+* fixed URLs
+* fixed dir RESULTS in examples
+* fixed invalid printing width in examples
+
 ## package inpdfr v0.1.9
 * used VCorpus instead of Corpus
 * readLines instead of readChar

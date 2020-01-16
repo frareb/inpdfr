@@ -16,6 +16,7 @@ A single word-occurrrence data.frame with each column corresponding to a text fi
 Merge word-occurrence data.frames into a single data.frame.
 }
 \examples{
+\dontrun{
 data("loremIpsum")
 loremIpsum01 <- loremIpsum[1:100]
 loremIpsum02 <- loremIpsum[101:200]
@@ -34,4 +35,5 @@ wordOccuFreq <- getTXT(myTXTs = list.files(path = paste0(getwd(),
 wordOccuDF <- mergeWordFreq(wordF = wordOccuFreq)
 file.remove(list.files(full.names = TRUE, 
   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+}
 }

@@ -17,6 +17,7 @@ A list of list with word-occurrence data.frame and file name.
 Extract text from TXT files and return a word-occurrence data.frame.
 }
 \examples{
+\dontrun{
 data("loremIpsum")
 loremIpsum01 <- loremIpsum[1:100]
 loremIpsum02 <- loremIpsum[101:200]
@@ -34,4 +35,5 @@ wordOccuFreq <- getTXT(myTXTs = list.files(path = paste0(getwd(),
   "/RESULTS/"), pattern = "loremIpsum", full.names = TRUE))
 file.remove(list.files(full.names = TRUE, 
   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+}
 }

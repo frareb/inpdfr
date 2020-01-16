@@ -53,6 +53,7 @@ preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
 #'   preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt")))
 #' file.remove(list.files(full.names = TRUE, 
 #'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+#' }
 #' @export
 postProcTxt <- function(txt, minword = 1, maxword = 20, minFreqWord = 1){
   txtMerged <- paste(txt, collapse = ' ')

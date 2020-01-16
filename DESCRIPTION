@@ -8,6 +8,8 @@ Description: A set of functions to analyse and compare texts, using classical
   text mining	functions, as well as those from theoretical ecology.
 License: GPL-2
 LazyData: TRUE
+Depends:
+  R (>= 3.5.0)
 Imports:
     wordcloud (>= 2.5),
     RColorBrewer (>= 1.1-2),

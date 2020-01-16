@@ -67,6 +67,7 @@ getPDF <- function(myPDFs, minword = 1, maxword = 20, minFreqWord = 1, pathToPdf
 #'   to these files).
 #' @return A list of list with word-occurrence data.frame and file name.
 #' @examples
+#' \dontrun{
 #' data("loremIpsum")
 #' loremIpsum01 <- loremIpsum[1:100]
 #' loremIpsum02 <- loremIpsum[101:200]
@@ -84,6 +85,7 @@ getPDF <- function(myPDFs, minword = 1, maxword = 20, minFreqWord = 1, pathToPdf
 #'   "/RESULTS/"), pattern = "loremIpsum", full.names = TRUE))
 #' file.remove(list.files(full.names = TRUE, 
 #'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+#' }
 #' @export
 getTXT <- function(myTXTs){
 	lapply(myTXTs, function(i){

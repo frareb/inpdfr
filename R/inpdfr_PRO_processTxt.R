@@ -5,6 +5,7 @@
 #' @param encodingOut Encoding of the text extracted (default = "UTF-8").
 #' @return A character vector with the content of the pre-process txt file (one element per line).
 #' @examples
+#' \dontrun{
 #' data("loremIpsum")
 #' subDir <- "RESULTS"
 #' dir.create(file.path(getwd(), subDir), showWarnings = FALSE)
@@ -12,6 +13,7 @@
 #' preProcTxt(filetxt = paste0(getwd(), "/RESULTS/loremIpsum.txt"))
 #' file.remove(list.files(full.names = TRUE, 
 #'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+#' }
 #' @export
 preProcTxt <- function(filetxt, encodingIn = "UTF-8", encodingOut = "UTF-8"){
   zz <- file(filetxt, 'r', encoding = encodingIn)

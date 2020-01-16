@@ -24,6 +24,7 @@ truncNumWords <- function(wordF, maxWords){
 #' @param wordF The data.frame containing word occurrences.
 #' @return A single word-occurrrence data.frame with each column corresponding to a text file.
 #' @examples
+#' \dontrun{
 #' data("loremIpsum")
 #' loremIpsum01 <- loremIpsum[1:100]
 #' loremIpsum02 <- loremIpsum[101:200]
@@ -42,6 +43,7 @@ truncNumWords <- function(wordF, maxWords){
 #' wordOccuDF <- mergeWordFreq(wordF = wordOccuFreq)
 #' file.remove(list.files(full.names = TRUE, 
 #'   path = paste0(getwd(), "/RESULTS"), pattern = "loremIpsum"))
+#' }
 #' @export
 mergeWordFreq <- function(wordF){
   fileNames <- sapply(wordF, "[[", 2)

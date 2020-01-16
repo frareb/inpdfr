@@ -1,3 +1,6 @@
+## package inpdfr v0.1.11
+* no more RESULTS directory
+
 ## package inpdfr v0.1.10
 * fixed URLs
 * fixed dir RESULTS in examples

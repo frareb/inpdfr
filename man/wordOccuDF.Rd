@@ -4,7 +4,9 @@
 \name{wordOccuDF}
 \alias{wordOccuDF}
 \title{Lorem Ipsum word occurrences.}
-\format{A data.frame containing word name and occurences for testing purposes.}
+\format{
+A data.frame containing word name and occurences for testing purposes.
+}
 \usage{
 wordOccuDF
 }

@@ -4,8 +4,10 @@
 \name{exclusionList_FR}
 \alias{exclusionList_FR}
 \title{Stop words in French.}
-\format{A vector with 173 elements (character), with UTF-8 characters escaped
-  using \code{stringi::stri_escape_unicode(exclusionList_FR)}.}
+\format{
+A vector with 173 elements (character), with UTF-8 characters escaped
+  using \code{stringi::stri_escape_unicode(exclusionList_FR)}.
+}
 \source{
 Adapted from www.ranks.nl/stopwords.
 }

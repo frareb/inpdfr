@@ -4,9 +4,11 @@
 \name{loremIpsum}
 \alias{loremIpsum}
 \title{Lorem Ipsum text.}
-\format{A vector with 556 elements, each element corresponds to a line in the original text (character).}
+\format{
+A vector with 556 elements, each element corresponds to a line in the original text (character).
+}
 \source{
-\url{http://lipsum.com/}.
+\url{https://lipsum.com/}.
 }
 \usage{
 loremIpsum

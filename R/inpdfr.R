@@ -10,5 +10,6 @@
 #' functions to use inpdfr through a Gtk2 Graphical User Interface (GitHub version only).
 #'
 #' @docType package
+#' @aliases inpdfr-package
 #' @name inpdfr
 NULL

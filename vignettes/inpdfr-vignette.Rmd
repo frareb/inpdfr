@@ -24,7 +24,7 @@ The `inpdfr` package is primarily designed for analysing and comparing PDF and/o
 
 We used these files for the purpose of this vignette, but I encourage you to test `inpdfr` package with your own publications, or those of your lab and colleagues.
 
-The package uses XPDF (http://www.foolabs.com/xpdf/download.html) for PDF to text extraction. You need to install XPDF before using `inpdfr` package. Depending on your operating system, you may need to restart your computer after installing XPDF. If you do not want to use XPDF, you can extract the content of your PDF files with the method of your choice and then store the content in TXT files. The only function making use of XPDF is `getPDF` which can be substituted with the `getTXT` function.
+The package uses XPDF (http://www.xpdfreader.com/download.html) for PDF to text extraction. You need to install XPDF before using `inpdfr` package. Depending on your operating system, you may need to restart your computer after installing XPDF. If you do not want to use XPDF, you can extract the content of your PDF files with the method of your choice and then store the content in TXT files. The only function making use of XPDF is `getPDF` which can be substituted with the `getTXT` function.
 
 ## 1. Using inpdfr from command line
 

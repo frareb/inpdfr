@@ -4,8 +4,10 @@
 \name{exclusionList_SP}
 \alias{exclusionList_SP}
 \title{Stop words in Spanish.}
-\format{A vector with 190 elements (character), with UTF-8 characters escaped
-  using \code{stringi::stri_escape_unicode(exclusionList_SP)}.}
+\format{
+A vector with 190 elements (character), with UTF-8 characters escaped
+  using \code{stringi::stri_escape_unicode(exclusionList_SP)}.
+}
 \source{
 Adapted from www.ranks.nl/stopwords.
 }

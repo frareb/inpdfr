@@ -33,7 +33,7 @@
 #'
 #' @format A vector with 556 elements, each element corresponds to a line in the original text (character).
 #'
-#' @source \url{http://lipsum.com/}.
+#' @source \url{https://lipsum.com/}.
 "loremIpsum"
 
 

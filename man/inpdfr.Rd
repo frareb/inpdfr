@@ -3,6 +3,7 @@
 \docType{package}
 \name{inpdfr}
 \alias{inpdfr}
+\alias{inpdfr-package}
 \title{inpdfr: A package to analyse PDF Files Using Ecological Tools.}
 \description{
 The inpdfr package allows analysing and comparing PDF/TXT documents using both

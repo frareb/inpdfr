@@ -4,7 +4,9 @@
 \name{exclusionList_UK}
 \alias{exclusionList_UK}
 \title{Stop words in English.}
-\format{A vector with 542 elements (character).}
+\format{
+A vector with 542 elements (character).
+}
 \source{
 Adapted from www.ranks.nl/stopwords.
 }
